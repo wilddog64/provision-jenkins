@@ -1,13 +1,8 @@
-from littlechef import chef
 import json
 import subprocess
 import os
 import pprint
-from funcy import *
-from funcy.debug import *
-from funcy.strings import *
 import re
-from itertools import *
 
 
 # littlechef plugin entry: execute.  This method has to
