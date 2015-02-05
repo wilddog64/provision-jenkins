@@ -5,48 +5,6 @@ import pprint
 import re
 
 
-# littlechef plugin entry: execute.  This method has to
-# be always implemented in order for littlechef to execute this
-# particular pluing
-def execute(node):
-    """
-    get_ec2_inventory plugin will query ec2 autoscaling group to get all the
-    instances hostname back
-    """
-
-    pp = pprint.PrettyPrinter(indent=3)
-    current_directory = os.path.dirname(os.path.realpath(__file__))
-    print "script executed: %s and current script directory is: %s" % \
-        (__file__, current_directory)
-    # aws_ec2cmd('dreambox', 'us-east-1', 'describe-instances',
-    #         query='Reservations[].Instances[].[PublicDnsName,KeyName]')
-    asg_query='AutoScalingGroups[*].[Tags[?Key==`Name`].Value,Instances[].InstanceId][]'
-    result = get_all_play_asgs(ec2profile='dreambox',
-                           ec2region='us-east-1',
-                           env='production',
-                           query=asg_query)
-    print 'result from get_all_play_asgs'
-    print '============================'
-    pp.pprint(result)
-    print 'end of get_all_play_asgs'
-    print '============================'
-    print
-
-    print 'result from get_only_play_asgs'
-    print '=============================='
-    result = get_only_play_asgs(query=asg_query)
-    pp.pprint(result)
-    print 'end of get_only_play_asgs'
-    print
-
-    print 'result from get_ec2_instances_hostnames_from_asg_groups'
-    print '======================================================='
-    results = get_ec2_instances_hostnames_from_asg_groups(asg_group=result)
-    pp.pprint(results)
-    print 'end of get_ec2_instances_hostnames_from_asg_groups'
-    print '=================================================='
-    print
-
 # base function for all other aws command line function.  this function
 # accepts 5 parameters,
 #
@@ -238,3 +196,37 @@ def get_ec2_instances_hostnames_from_asg_groups(ec2profile='dreambox',
                                 query=info_query)
             results.append(result)
     return results
+
+if __name__ == "__main__":
+    pp = pprint.PrettyPrinter(indent=3)
+    current_directory = os.path.dirname(os.path.realpath(__file__))
+    print "script executed: %s and current script directory is: %s" % \
+        (__file__, current_directory)
+    # aws_ec2cmd('dreambox', 'us-east-1', 'describe-instances',
+    #         query='Reservations[].Instances[].[PublicDnsName,KeyName]')
+    asg_query='AutoScalingGroups[*].[Tags[?Key==`Name`].Value,Instances[].InstanceId][]'
+    result = get_all_play_asgs(ec2profile='dreambox',
+                           ec2region='us-east-1',
+                           env='production',
+                           query=asg_query)
+    print 'result from get_all_play_asgs'
+    print '============================'
+    pp.pprint(result)
+    print 'end of get_all_play_asgs'
+    print '============================'
+    print
+
+    print 'result from get_only_play_asgs'
+    print '=============================='
+    result = get_only_play_asgs(query=asg_query)
+    pp.pprint(result)
+    print 'end of get_only_play_asgs'
+    print
+
+    print 'result from get_ec2_instances_hostnames_from_asg_groups'
+    print '======================================================='
+    results = get_ec2_instances_hostnames_from_asg_groups(asg_group=result)
+    pp.pprint(results)
+    print 'end of get_ec2_instances_hostnames_from_asg_groups'
+    print '=================================================='
+    print
