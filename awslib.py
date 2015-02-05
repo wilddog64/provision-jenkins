@@ -185,7 +185,6 @@ def get_ec2_instances_hostnames_from_asg_groups(ec2profile='dreambox',
                                                 ec2region='us-east-1',
                                                 asg_group={},
                                                 **options):
-    pp = pprint.PrettyPrinter(indent=3)
     info_query='Reservations[].[Instances[].[PublicDnsName,KeyName]][][]'
     results = []
     for k, v in asg_group.items():
