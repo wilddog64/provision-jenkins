@@ -1,0 +1,25 @@
+*~
+*#
+.#*
+\#*#
+.*.sw[a-z]
+*.un~
+pkg/
+
+# Berkshelf
+.vagrant
+cookbooks
+Berksfile.lock
+
+# Bundler
+Gemfile.lock
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+
+tmp_*
+.ropeproject
+data_bags/node
+*.pyc
+tags
