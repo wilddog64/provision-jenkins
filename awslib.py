@@ -73,8 +73,8 @@ def aws_cmd(cmd_cat='',
                 my_options[k] = v
             else:
                 my_options[k] = v
-        cmd_opts = ' '.join(["--{} {}".format(k, v)
-                             for k, v in my_options.items()])
+        cmd_opts = ' '.join(["--{} {}".format(key, val)
+                             for key, val in my_options.items()])
     aws_command = "aws --profile {} --region {} {} {} {}".format(profile,
              region, cmd_cat, subcmd, cmd_opts)
     print "prepare to execute %s " % aws_command
