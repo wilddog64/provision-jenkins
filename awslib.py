@@ -1,8 +1,10 @@
 import json
+from funcy.strings import *
 import subprocess
 import os
 import pprint
 import re
+
 
 
 # base function for all other aws command line function.  this function
