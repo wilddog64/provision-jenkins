@@ -138,7 +138,6 @@ provide, the default value will be `us-east-1`
 #### function usages
 
 * get\_all\_asgs(ec2profile='dreambox', ec2region='us-east-1')
-* get\_all\_asgs()
 
 The above call will transfer to this `aws` command,
 
@@ -149,3 +148,9 @@ The above call will transfer to this `aws` command,
 The above call will transfer into,
 
     aws --profile dreambox --region us-east-1 autoscaling auto-scaling-groups --query '...'
+
+* get\_only\_play\_asgs(query='...')
+
+The above call will translate into this,
+
+    aws --profile dreambox --region us-east-1 autoscaling auto-scaling-group --query '...'
