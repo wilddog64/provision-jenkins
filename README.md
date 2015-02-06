@@ -154,3 +154,23 @@ The above call will transfer into,
 The above call will translate into this,
 
     aws --profile dreambox --region us-east-1 autoscaling auto-scaling-group --query '...'
+
+### get\_ec2\_instances\_hostnames\_from\_asg\_groups
+
+This function will take a list of `asg groups` and find the corresponding `PublicDnsName`,
+and `Tag: Key=Name, Value` back to the caller. The function accepts these parameters,
+
+* profile: a profile define in ~/.aws/config.  For how to setup ~/.aws configuration file, refer to
+[this document](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for
+more information. This is an optional parameter.  If no value is provided, the default value is
+`dreambox`.
+* region: this will accept a valid region present in `AWS service`. It is an optional.  If no value
+provide, the default value will be `us-east-1`
+
+#### function usages
+
+    asg_query='AutoScalingGroups[*].[Tags[?Key==`Name`].Value,Instances[].InstanceId][]'
+    result = get_only_play_asgs(query=asg_query)
+    get_ec2_instances_hostnames_from_asg_groups(asg_group=result)
+
+The `get_ec2_instances_hostnames_from_asg_groups` will need an `asg` group to feed with.
