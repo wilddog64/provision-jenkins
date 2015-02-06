@@ -53,7 +53,22 @@ will be transfer to this
     aws --profile dreambox --region us-east-1 ec2 describe-instances --instance-ids ... --query ...
 
 _note: '-' in the instance-id will crash with python keyword (as this is a minus sign), so we have to 
-replace it with '\_'.  The function will replace it back with '-'.
+replace it with '\_'.  The function will replace it back with '-'. \_
 
 ## dreambox.aws.asg
+
+This namespace provides functionality to manage `AWS Auto Scaling Group`. It provides the following functions.
+It dpends on the dreambox.aws.core for some basic operations.
+
+### get\_all\_asgs
+This function return all the `auto scaling groups` define in a given `aws region`.  The function accepts the following
+parameters:
+
+* profile: a profile define in ~/.aws/config.  For how to setup ~/.aws configuration file, refer to
+[this document](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for 
+more information. This is an optional parameter.  If no value is provided, the default value is
+`dreambox`.
+* region: this will accept a valid region present in `AWS service`. It is an optional.  If no value
+provide, the default value will be `us-east-1`
+* **options: any valid option for a given `aws command sub-command ...`.
 
