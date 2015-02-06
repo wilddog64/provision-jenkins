@@ -192,3 +192,18 @@ Upon a successful call, a hash object will return
     result = dreambox.utils.make_hash_of_hashes(my_list)
 
 result is a hash with hashes object
+
+## Package Structure
+
+    ├── README.md
+    └── dreambox
+        ├── __init__.py
+        ├── aws
+        │   ├── __init__.py
+        │   ├── asg.py
+        │   ├── core.py
+        │   └── ec2.py
+        ├── ops
+        │   ├── __init__.py
+        │   └── deployment.py
+        └── utils.py
