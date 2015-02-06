@@ -72,3 +72,17 @@ more information. This is an optional parameter.  If no value is provided, the d
 provide, the default value will be `us-east-1`
 * **options: any valid option for a given `aws command sub-command ...`.
 
+#### function usages
+
+* get\_all\_asgs(ec2profile='dreambox', ec2region='us-east-1')
+* get\_all\_asgs()
+
+The above call will transfer to this `aws` command,
+
+    aws --profile dreambox --region us-east-1 autoscaling auto-scaling-groups
+
+* get\_all\_asgs(query='...')
+
+The above call will transfer into,
+
+    aws --profile dreambox --region us-east-1 autoscaling auto-scaling-groups --query '...'
