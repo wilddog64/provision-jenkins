@@ -39,18 +39,21 @@ how to parse the object to provide usable information.
 
 #### function usages
 
-* aws_cmd(cmd_cat='autoscaling', profile='dreambox', subcmd='describe-auto-scaling-groups', query='...')
-* aws_cmd(cmd_cat='autoscaling', subcmd='describe-auto-scaling-groups', query='...')
+* aws\_cmd(cmd\_cat='autoscaling', profile='dreambox', subcmd='describe-auto-scaling-groups', query='...')
+* aws\_cmd(cmd\_cat='autoscaling', subcmd='describe-auto-scaling-groups', query='...')
 
 will tranfer into this
 
     aws --profile dreambox --region us-east-1 autoscaling describe-auto-scaling-group --query ...
 
-* aws_cmd(cmd_cat='ec2', subcmd='describe-instances', instance_ids='...', query='...')
+* aws\_cmd(cmd_cat='ec2', subcmd='describe-instances', instance_ids='...', query='...')
 
 will be transfer to this
 
     aws --profile dreambox --region us-east-1 ec2 describe-instances --instance-ids ... --query ...
 
 _note: '-' in the instance-id will crash with python keyword (as this is a minus sign), so we have to 
-replace it with '_'.  The function will replace it back with '-'.
+replace it with '\_'.  The function will replace it back with '-'.
+
+## dreambox.aws.asg
+
