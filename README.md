@@ -118,7 +118,7 @@ The above function statement will transfer into this,
 
     aws --profile dreambox --region us-east-1 describe-auto-scaling-groups
 
-## dreambox.aws.asg
+## dreambox.ops.deployment
 
 This namespace provides functionality to manage `AWS Auto Scaling Group`. It provides the following functions.
 It dpends on the dreambox.aws.core for some basic operations.
