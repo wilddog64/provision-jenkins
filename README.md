@@ -6,8 +6,8 @@ through awscli command line utility.
 
 ## dreambox.aws.core
 
-This is the core library for various aws functions provided by this library.
-The library currently provide the following 3 functions:
+This is the core library one that provide for various aws functions within dreambox.aws namespace.
+The library currently provide the following functions:
 
 ### aws_cmd
 
