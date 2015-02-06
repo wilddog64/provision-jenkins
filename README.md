@@ -87,6 +87,37 @@ The above function call will transfer into this,
 
     aws --profile dreambox --region us-east-1 describe-instances --instance-id ... --query ...
 
+### aws_asgcmd
+This function takes in charge of executing `aws autoscaling` command groups.  The function accepts the
+following parameters,
+
+* profile: a profile define in ~/.aws/config.  For how to setup ~/.aws configuration file, refer to
+[this document](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html) for
+more information. This is an optional parameter.  If no value is provided, the default value is
+`dreambox`.
+* region: this will accept a valid region present in `AWS service`. It is an optional.  If no value
+provide, the default value will be `us-east-1`
+* subcmd: a valid sub-command for `aws autoscaling`.  Refer to
+[AWS Command Line Interface]( http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html )
+for detail.  This is a require parameter.
+* **options: any valid option for a given `aws command sub-command ...`.
+Refer to [AWS Command Line Interface]( http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-using.html )
+
+#### function usages
+
+* aws_asgcmd(ec2profile='dreambox', ec2region='us-east-1', 'describe-auto-scaling-groups')
+* aws_asgcmd('dreambox', 'us-east-1', 'describe-auto-scaling-groups')
+
+The above function statements will transfer into this,
+
+    aws --profile dreambox --region us-east-1 describe-auto-scaling-groups
+
+* aws_asgcmd('dreambox', 'us-east-1', 'describe-auto-scaling-groups' query='...')
+
+The above function statement will transfer into this,
+
+    aws --profile dreambox --region us-east-1 describe-auto-scaling-groups
+
 ## dreambox.aws.asg
 
 This namespace provides functionality to manage `AWS Auto Scaling Group`. It provides the following functions.
