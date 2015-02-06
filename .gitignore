@@ -23,3 +23,6 @@ tmp_*
 data_bags/node
 *.pyc
 tags
+build/
+dist/
+dreambox.egg-info/
