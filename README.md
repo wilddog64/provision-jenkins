@@ -174,3 +174,21 @@ provide, the default value will be `us-east-1`
     get_ec2_instances_hostnames_from_asg_groups(asg_group=result)
 
 The `get_ec2_instances_hostnames_from_asg_groups` will need an `asg` group to feed with.
+
+## dreambox.utils
+This namespace provides a set of handy functions
+
+### make\_hash\_of\_hashes
+
+This function accept a list of even number elements and turn them into a hash
+of hashes.  The function takes one parameter,
+
+* my\_list: a python list object
+
+Upon a successful call, a hash object will return
+
+#### function usage
+
+    result = dreambox.utils.make_hash_of_hashes(my_list)
+
+result is a hash with hashes object
