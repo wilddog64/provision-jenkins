@@ -1,17 +1,15 @@
 ---
 
-global:
-
 revoke_all_ingress_rules_for_stage:
   position:
     stage: 
       help: a stage environment you like to have security rules revoked
   key-values:
-  dry-run:
-    type: bool
-    dest: dry_run
-    default: False
-    short: n
+    dry-run:
+      type: bool
+      dest: dry_run
+      default: False
+      short: n
 
 clone_env_apps:
   poistion:
