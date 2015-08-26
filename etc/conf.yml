@@ -1,0 +1,33 @@
+---
+
+global:
+
+revoke_all_ingress_rules_for_stage:
+  position:
+    stage: 
+      help: a stage environment you like to have security rules revoked
+  key-values:
+  dry-run:
+    type: bool
+    dest: dry_run
+    default: False
+    short: n
+
+clone_env_apps:
+  poistion:
+    from_env:
+      help: where should we clone environment from
+    to_env:
+      help: where we should clone environment to
+  key-values:
+    repo-path:
+      type: str
+      dest: repo_path
+      default: /tmp
+      help: a path where repo should clone to
+    repo-name:
+      type: str
+      dest: repo_name
+      default: 
+      help: the name of repo
+    
