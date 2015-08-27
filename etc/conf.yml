@@ -6,26 +6,31 @@ revoke_all_ingress_rules_for_stage:
       help: a stage environment you like to have security rules revoked
   key-values:
     dry-run:
-      type: bool
+      type: !!python/name:types.BooleanType
       dest: dry_run
       default: False
       short: n
+      help: a boolean flag direct the program to tells what happen, but will not execute
+  func: !!python/name:dreambox.ops.deployment.revoke_all_ingress_rules_for_stage
 
 clone_env_apps:
-  poistion:
+  position:
     from_env:
       help: where should we clone environment from
     to_env:
       help: where we should clone environment to
   key-values:
     repo-path:
-      type: str
+      type: !!python/name:types.StringType
+      short: p
       dest: repo_path
       default: /tmp
       help: a path where repo should clone to
     repo-name:
-      type: str
+      type: !!python/name:types.StringType
       dest: repo_name
+      short: o
       default: 
       help: the name of repo
+  func: !!python/name:dreambox.ops.git_client.clone_env_apps
     
