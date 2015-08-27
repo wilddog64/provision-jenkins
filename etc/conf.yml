@@ -1,16 +1,18 @@
 ---
-
-revoke_all_ingress_rules_for_stage:
-  position:
-    stage: 
-      help: a stage environment you like to have security rules revoked
-  key-values:
-    dry-run:
-      type: !!python/name:types.BooleanType
-      dest: dry_run
-      default: False
-      short: n
-      help: a boolean flag direct the program to tells what happen, but will not execute
+# conf.yml file tells python script, ops to generate command line options.
+# The configuration file has these structure,
+#
+revoke_all_ingress_rules_for_stage:  # application name (a sub-command from a main one)
+  position:  # define positional arguments in this section
+    stage:   # name of a positional argument
+      help: a stage environment you like to have security rules revoked  # help message
+  key-values: # key/value command options defines in this section
+    dry-run:  # name of the argument
+      type: !!python/name:types.BooleanType  # type of the argument, refer lib/types for detail
+      dest: dry_run                          # python variable store the command line option value
+      default: False                         # a default value if command line is not specified
+      short: n                               # a short name for the option
+      help: a boolean flag direct the program to tells what happen, but will not execute # a help message
   func: !!python/name:dreambox.ops.deployment.revoke_all_ingress_rules_for_stage
 
 clone_env_apps:
