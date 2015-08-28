@@ -32,7 +32,18 @@ clone_env_apps:
       type: !!python/name:types.StringType
       dest: repo_name
       short: o
-      default: 
+      default:
       help: the name of repo
+    repo-url:
+      type: !!python/name:types.StringType
+      short: u
+      dest: repo_url
+      default: git@github.com:dreamboxlearning/chef-environments.git
+      help: a git repo url where we can clone from
+    dry-run:  # name of the argument
+      type: !!python/name:types.BooleanType
+      dest: dry_run
+      default: False
+      short: n
+      help: a boolean flag direct the program to tells what happen, but will not execute
   func: !!python/name:dreambox.ops.git_client.clone_env_apps
-    
