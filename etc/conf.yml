@@ -1,0 +1,51 @@
+---
+# conf.yml file tells python script, ops to generate command line options.
+# The configuration file has these structure,
+#
+revoke_all_ingress_rules_for_stage:  # application name (a sub-command from a main one)
+  position:  # define positional arguments in this section
+    -
+      stage:   # name of a positional argument
+        help: a stage environment you like to have security rules revoked  # help message
+  key-values: # key/value command options defines in this section
+    dry-run:  # name of the argument
+      type: !!python/name:types.BooleanType  # type of the argument, refer lib/types for detail
+      dest: dry_run                          # python variable store the command line option value
+      default: False                         # a default value if command line is not specified
+      short: n                               # a short name for the option
+      help: a boolean flag direct the program to tells what happen, but will not execute # a help message
+  func: !!python/name:dreambox.ops.deployment.revoke_all_ingress_rules_for_stage
+
+clone_env_apps:
+  position:
+    - 
+      to_env:
+        help: where we should clone environment to
+      from_env:
+        help: where should we clone environment from
+  key-values:
+    repo-path:
+      type: !!python/name:types.StringType
+      short: p
+      dest: repo_path
+      default: /tmp
+      help: a path where repo should clone to
+    repo-name:
+      type: !!python/name:types.StringType
+      dest: repo_name
+      short: o
+      default:
+      help: the name of repo
+    repo-url:
+      type: !!python/name:types.StringType
+      short: u
+      dest: repo_url
+      default: git@github.com:dreamboxlearning/chef-environments.git
+      help: a git repo url where we can clone from
+    dry-run:  # name of the argument
+      type: !!python/name:types.BooleanType
+      dest: dry_run
+      default: False
+      short: n
+      help: a boolean flag direct the program to tells what happen, but will not execute
+  func: !!python/name:dreambox.ops.git_client.clone_env_apps
