@@ -28,3 +28,4 @@ dist/
 dreambox.egg-info/
 tags
 build.properties
+Session.vim
