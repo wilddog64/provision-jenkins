@@ -196,14 +196,36 @@ result is a hash with hashes object
 ## Package Structure
 
     ├── README.md
-    └── dreambox
-        ├── __init__.py
-        ├── aws
-        │   ├── __init__.py
-        │   ├── asg.py
-        │   ├── core.py
-        │   └── ec2.py
-        ├── ops
-        │   ├── __init__.py
-        │   └── deployment.py
-        └── utils.py
+    ├── dreambox
+    │   ├── __init__.py
+    │   ├── aws
+    │   │   ├── __init__.py
+    │   │   ├── asg.py
+    │   │   ├── autoscaling.py
+    │   │   ├── cfn.py
+    │   │   ├── cfn_common.py
+    │   │   ├── cloudformation.py
+    │   │   ├── core.py
+    │   │   ├── ec2.py
+    │   │   ├── s3.py
+    │   │   └── security.py
+    │   ├── etc
+    │   │   └── conf.yml
+    │   ├── git
+    │   │   ├── __init__.py
+    │   │   ├── client.py
+    │   │   └── core.py
+    │   ├── json
+    │   │   ├── __init__.py
+    │   │   ├── chef_env.py
+    │   │   └── core.py
+    │   ├── ops
+    │   │   ├── __init__.py
+    │   │   ├── aws_common.py
+    │   │   ├── common.py
+    │   │   ├── deployment.py
+    │   │   ├── fabfile.py
+    │   │   └── git_client.py
+    │   └── utils.py
+    ├── ops
+    ├── setup.py
