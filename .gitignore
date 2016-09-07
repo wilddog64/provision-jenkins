@@ -29,3 +29,4 @@ dreambox.egg-info/
 tags
 build.properties
 Session.vim
+dreambox/etc/jenkins.ini
