@@ -26,3 +26,4 @@ python-jenkins==0.4.13
 xmljson==0.1.7
 python-jenkins==0.4.13
 argcomplete==1.5.1
+click==6.6
