@@ -1,5 +1,5 @@
 aspy.yaml==0.2.1
-awscli
+awscli==1.7.46
 boto==2.38.0
 botocore==1.1.9
 cached-property==1.2.0
