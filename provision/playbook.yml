@@ -1,0 +1,7 @@
+---
+- hosts: all
+  vars_files:
+  - "vars/{{ ansible_os_family }}.yml" 
+
+  roles:
+    - install_jenkins
