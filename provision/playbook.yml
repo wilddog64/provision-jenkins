@@ -21,3 +21,6 @@
         update_cache: yes
         pkg: jenkins
         state: present
+
+    - name: start jenkins service
+      service: name=jenkins state=started
