@@ -1,6 +1,6 @@
 ---
 - hosts: all
-  sudo: yes
+  become: yes
   vars:
     - jenkins_repo_key_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
     - jenkins_repo_url: deb http://pkg.jenkins.io/debian-stable binary/
@@ -14,11 +14,11 @@
     - name: create apt repo
       apt_repository:
         repo: "{{ jenkins_repo_url }}"
+        update_cache: yes
         state: present
 
     - name: update apt cache
       apt:
-        update_cache: yes
         pkg: jenkins
         state: present
 
