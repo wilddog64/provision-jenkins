@@ -1,0 +1,3 @@
+---
+- name: echo variables
+  debug: "{{ jenkins_repo_key_url }}"
