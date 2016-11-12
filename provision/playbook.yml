@@ -8,12 +8,12 @@
   tasks:
     - name: install jenkins repo keys
       apt_key:
-        url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+        url: "{{ jenkins_repo_key_url }}"
         state: present
 
     - name: create apt repo
       apt_repository:
-        repo: deb http://pkg.jenkins.io/debian-stable binary/
+        repo: "{{ jenkins_repo_url }}"
         state: present
 
     - name: update apt cache
