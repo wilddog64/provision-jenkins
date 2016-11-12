@@ -1,7 +1,23 @@
 ---
 - hosts: all
-  vars_files:
-  - "vars/{{ ansible_os_family }}.yml" 
+  sudo: yes
+  vars:
+    - jenkins_repo_key_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+    - jenkins_repo_url: deb http://pkg.jenkins.io/debian-stable binary/
 
-  roles:
-    - install_jenkins
+  tasks:
+    - name: install jenkins repo keys
+      apt_key:
+        url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+        state: present
+
+    - name: create apt repo
+      apt_repository:
+        repo: deb http://pkg.jenkins.io/debian-stable binary/
+        state: present
+
+    - name: update apt cache
+      apt:
+        update_cache: yes
+        pkg: jenkins
+        state: present
