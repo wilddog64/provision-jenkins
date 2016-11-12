@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision :ansible_local do | ansible |
     ansible.install_mode = :pip
     ansible.verbose = 'vvv'
-    ansible.playbook = 'provision/playbook.yml'
+    ansible.playbook = 'playbook.yml'
   end
 
   # Disable automatic box update checking. If you disable this, then
