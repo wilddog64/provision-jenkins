@@ -17,9 +17,11 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "hashicorp/precise64"
 
-  config.vm.provision 'ansible_local' do | ansible |
+  config.vm.provision :ansible_local do | ansible |
     ansible.install_mode = :pip
-    ansible.playbook     = 'provision/playbook.yml'
+    ansible.version = '2.0'
+    ansible.verbose = 'vvv'
+    ansible.playbook = 'provision/playbook.yml'
   end
 
   # Disable automatic box update checking. If you disable this, then
