@@ -32,12 +32,17 @@
   register: jenkins_password_hash
   become_user: jenkins
 
+- name: Jenkins admin config.xml exists
+  stat: path=/var/lib/jenkins/users/admin/config.xml
+  register: st
+
 - name: Jenkins | patch original password hash line
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
     regexp: '^(\s)*<passwordHash>(.*)'
     line: '      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>'
-  when: jenkins_password_hash
+    state: absent
+  when: st.stat.exists == True and jenkins_password_hash
   become_user: jenkins
   notify: restart Jenkins
 
