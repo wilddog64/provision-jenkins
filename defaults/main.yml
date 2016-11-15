@@ -9,3 +9,6 @@ jenkins_plugins:
   - sonar
   - ssh
 jenkins_url_prefix: ""
+jenkins_repo_key_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
+jenkins_repo_url: deb http://pkg.jenkins.io/debian-stable binary/
+
