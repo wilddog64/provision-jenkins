@@ -50,9 +50,9 @@
     force_basic_auth: yes
     return_content: yes
   register: crumb_token
-  util: crumb_token.content.find('Please wait while Jenkins is getting ready') == -1
+  until: crumb_token.content.find('Please wait while Jenkins is getting ready') == -1
   retries: 10
-  deplay: 5
+  delay: 5
 
 - name: Jenkins | set crumb token
   set_fact:
