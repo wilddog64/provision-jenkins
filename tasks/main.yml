@@ -36,6 +36,9 @@
   stat: path=/var/lib/jenkins/users/admin/config.xml
   register: st
 
+- name: Jenkins output admin config.xml stat
+  debug: var=st
+
 - name: Jenkins | patch original password hash line
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
