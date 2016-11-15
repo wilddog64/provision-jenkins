@@ -28,13 +28,6 @@
   become_user: jenkins
   notify: create Jenkins admin password hash
 
-- name: Jenkins | patch original password hash line
-  lineinfile:
-    dest: /var/lib/jenkins/users/admin/config.xml
-    regexp: '^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:'
-  when: create_admin_event_receieved
-  notify: restart Jenkins
-
 - name: Jenkins | grab Jenkins crumb
   uri:
     user: "{{ jenkins_admin_user }}"
