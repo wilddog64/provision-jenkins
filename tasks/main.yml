@@ -26,7 +26,7 @@
 - name: Jenkins | remove initial Jenkins password
   file: name=/var/lib/jenkins/secrets/initialAdminPassword state=absent
   become_user: jenkins
-  notifiy: create Jenkins admin password hash
+  notify: create Jenkins admin password hash
 
 - name: Jenkins | patch original password hash line
   lineinfile:
