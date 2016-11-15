@@ -4,13 +4,13 @@
 
 - name: create Jenkins admin password hash
   command: echo -n "{{ jenkins_admin_password }}{ ansible_jenkins }" | sha256sum - | aws '{ print $1; }'
-  register: create_admin_event_received
+  register: jenkins_password_hash
   become_user: jenkins
 
 - name: Jenkins | patch original password hash line
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
     regexp: /var/lib/jenkins/users/admin/config.xml" regexp='^(\s)*<passwordHash>(.*)' line='      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>' owner="jenkins 
-  when: create_admin_event_receieved
+  when: jenkins_password_hash
   notify: restart Jenkins
 
