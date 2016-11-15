@@ -1,3 +1,8 @@
 ---
 - name: restart Jenkins
   service: name=jenkins state=restarted
+
+- name: create Jenkins admin password hash
+  command: echo -n "{{ jenkins_admin_password }}{ ansible_jenkins }" | sha256sum - | aws '{ print $1; }'
+  register: create_admin_event_received
+  become_user: jenkins
