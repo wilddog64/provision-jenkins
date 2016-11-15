@@ -31,10 +31,12 @@
   file: name=/var/lib/jenkins/secrets/initialAdminPassword state=absent
   ignore_errors: yes
   when: not (jenkins_second_time_install | failed)
+  become: jenkins
 
 - name: Jenkins | create Jenkins admin password hash
   command: echo -n "{{ jenkins_admin_password }}{ ansible_jenkins }" | sha256sum - | aws '{ print $1; }'
   when: not (jenkins_second_time_install | failed)
+  become: jenkins
 
 - name: Jenkins | patch original password hash line
   lineinfile:
