@@ -13,7 +13,7 @@
 - name: Jenkins | install jenkins
   apt:
     pkg: jenkins
-    state: present
+    state: installed
 
 - name: Jenkins | start jenkins service
   service: name=jenkins state=started
