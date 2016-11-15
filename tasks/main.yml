@@ -16,7 +16,7 @@
     state: installed
 
 - name: Jenkins | check if this is the first time install Jenkins
-  command: test -x /var/lib/jenkins/secrets/initialAdminPassword
+  shell: test -x /var/lib/jenkins/secrets/initialAdminPassword
   ignore_errors: yes
   register: jenkins_second_time_install
 
