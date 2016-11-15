@@ -39,7 +39,7 @@
 - name: Jenkins | patch original password hash line
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
-    regexp: ^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:
+    regexp: '^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:'
   when: not (jenkins_second_time_install | failed)
   notify: restart Jenkins
 
