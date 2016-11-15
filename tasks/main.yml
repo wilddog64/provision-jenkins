@@ -15,5 +15,5 @@
     pkg: jenkins
     state: present
 
-- name: start jenkins service
+- name: Jenkins | start jenkins service
   service: name=jenkins state=started
