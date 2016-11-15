@@ -19,6 +19,7 @@
   shell: test -x /var/lib/jenkins/secrets/initialAdminPassword
   ignore_errors: yes
   register: jenkins_second_time_install
+  become: jenkins
 
 - name: Jenkins | supress wizard mode
   lineinfile:
