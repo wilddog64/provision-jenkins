@@ -10,7 +10,7 @@
 - name: Jenkins | patch original password hash line
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
-    regexp: '^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:'
+    regexp: /var/lib/jenkins/users/admin/config.xml" regexp='^(\s)*<passwordHash>(.*)' line='      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>' owner="jenkins 
   when: create_admin_event_receieved
   notify: restart Jenkins
 
