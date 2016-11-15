@@ -33,7 +33,7 @@
   become_user: jenkins
 
 - name: Jenkins admin config.xml exists
-  stat: path='/var/lib/jenkins/users/admin/config.xml'
+  stat: path=/var/lib/jenkins/users/admin/config.xml
   register: st
 
 - name: Jenkins output admin config.xml stat
