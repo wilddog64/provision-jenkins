@@ -1,10 +1,10 @@
 ---
 galaxy_info:
-author: chengkai liang
-description: An ansible role for installing Jenkins
+  author: chengkai liang
+  description: An ansible role for installing Jenkins
 platform:
   - name: Ubuntu
-versions:
-  - precise64
+    versions:
+      - precise64
 categories:
   - system
