@@ -17,7 +17,7 @@
         update_cache: yes
         state: present
 
-    - name: update apt cache
+    - name: install jenkins
       apt:
         pkg: jenkins
         state: present
