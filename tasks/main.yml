@@ -32,7 +32,7 @@
   lineinfile:
     dest: /var/lib/jenkins/users/admin/config.xml
     regexp: '^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:'
-  when_changed: create_admin_event_receieved
+  when: create_admin_event_receieved
   notify: restart Jenkins
 
 - name: Jenkins | grab Jenkins crumb
