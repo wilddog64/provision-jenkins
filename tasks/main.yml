@@ -15,5 +15,48 @@
     pkg: jenkins
     state: installed
 
+- name: Jenkins | check if this is the first time install Jenkins
+  command: test -x /var/lib/jenkins/secrets/initialAdminPassword
+  ignore_errors: yes
+  register: jenkins_second_time_install
+
+- name: Jenkins | supress wizard mode
+  lineinfile:
+    dest: /etc/default/jenkins
+    insertbefore: ^JENKINS_ARGS.*
+    line: "JAVA_ARGS={{ jenkins_java_args }}"
+  when: not (jenkins_second_time_install | failed)
+
+- name: Jenkins | remove initial Jenkins password
+  file: name=/var/lib/jenkins/secrets/initialAdminPassword state=absent
+  ignore_errors: yes
+  when: not (jenkins_second_time_install | failed)
+
+- name: Jenkins | create Jenkins admin password hash
+  command: echo -n "{{ jenkins_admin_password }}{ ansible_jenkins }" | sha256sum - | aws '{ print $1; }'
+  when: not (jenkins_second_time_install | failed)
+
+- name: Jenkins | patch original password hash line
+  lineinfile:
+    dest: /var/lib/jenkins/users/admin/config.xml
+    regexp: ^(\s)*<passwordHash>(.*) line=\s*<passwordHash>ansible_jenkins:
+  when: not (jenkins_second_time_install | failed)
+  notify: restart Jenkins
+
+- name: Jenkins | grab Jenkins crumb
+  uri:
+    user: "{{ jenkins_admin_user }}"
+    password: "{{ jenkins_admin_password }}"
+    force_basic_auth: yes
+    return_content: yes
+  register: crumb_token
+  util: crumb_token.content.find('Please wait while Jenkins is getting ready') == -1
+  retries: 10
+  deplay: 5
+
+- name: Jenkins | set crumb token
+  set_fact:
+    jenkins_crumb_token: "{{ crumb_token.json.crumbRequestField }}={{ crumb_token.json.crumb }}"
+
 - name: Jenkins | start jenkins service
   service: name=jenkins state=started
