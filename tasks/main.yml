@@ -37,8 +37,8 @@
     dest: /var/lib/jenkins/users/admin/config.xml
     regexp: '^(\s)*<passwordHash>(.*)'
     line: '      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>'
-    owner: jenkins 
   when: jenkins_password_hash
+  become_user: jenkins
   notify: restart Jenkins
 
 
