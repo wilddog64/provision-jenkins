@@ -67,7 +67,7 @@
 - name: Jenkins | set crumb token
   set_fact:
     jenkins_crumb_token: "{{ crumb_token.json.crumbRequestField }}={{ crumb_token.json.crumb }}"
-  when: crumb_token
+  when: crumb_token.changed
 
 - name: Jenkins | start jenkins service
   service: name=jenkins state=started
