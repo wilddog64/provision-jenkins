@@ -20,7 +20,7 @@
   become_user: jenkins
 
 - name: create Jenkins admin password hash
-  command: bash -c echo -n {{ jenkins_admin_password }} | sha256sum - | awk '{ print $1; }'
+  command: bash -c echo {{ jenkins_admin_password }} | sha256sum - | awk '{ print $1; }'
   register: jenkins_password_hash
   become: False
 
