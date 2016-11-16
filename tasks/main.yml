@@ -1,6 +1,6 @@
 ---
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
-- include: "tasks/install.{{ ansible_os_family }}jenkins.yml"
+- include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 
 - name: check if initial admin password exists
   stat:
