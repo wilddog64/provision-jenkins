@@ -1,14 +1,5 @@
 ---
-- name: Jenkins | install jenkins repo keys
-  apt_key:
-    url: "{{ jenkins_repo_key_url }}"
-    state: present
-
-- name: Jenkins | create apt repo
-  apt_repository:
-    repo: "{{ jenkins_repo_url }}"
-    update_cache: yes
-    state: present
+- include "tasks/setup.{{ ansible_os_family }}.repo"
 
 - name: Jenkins | install jenkins
   apt:
