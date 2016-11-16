@@ -24,6 +24,11 @@
   register: jenkins_password_hash
   become: False
 
+- name: trim off spaces and extract characters at the end of jenkins_password_hash
+  shell: echo {{ jenkins_password_hash.stdout }} | perl -ple 's/\s+-$//g'
+  register: jenkins_password_hash
+  become: False
+
 - name: output jenkins password hash
   debug: var="{{jenkins_password_hash}}"
 
