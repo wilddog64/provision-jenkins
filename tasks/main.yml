@@ -15,11 +15,16 @@
     pkg: jenkins
     state: installed
 
+- name: check if initial admin password exists
+  stat:
+    path: /var/lib/jenkins/secrets/initialAdminPassword
+  register: st
+
 - name: Jenkins | remove initial Jenkins password
   file: 
     path: /var/lib/jenkins/secrets/initialAdminPassword
     state: absent
-  until: filestat.changed
+  until: not st.stat.exists
   register: filestat
 
 - name: output file stat
