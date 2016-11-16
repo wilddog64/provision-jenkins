@@ -45,7 +45,7 @@
     regexp: '^(\s)*<passwordHash>(.*)'
     line: '      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>'
     state: absent
-  when: st.stat.exists == True and jenkins_password_hash
+  when: st.stat.exists and jenkins_password_hash
   become_user: jenkins
   notify: restart Jenkins
 
