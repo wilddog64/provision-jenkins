@@ -19,6 +19,7 @@
   file: 
     path: /var/lib/jenkins/secrets/initialAdminPassword
     state: absent
+  until: filestat.changed
   register: filestat
 
 - name: output file stat
