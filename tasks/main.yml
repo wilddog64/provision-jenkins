@@ -28,6 +28,7 @@
 
 - name: Jenkins admin config.xml exists
   stat: path=/var/lib/jenkins/users/admin/config.xml
+  until: st.stat.exists
   register: st
 
 - name: Jenkins output admin config.xml stat
