@@ -26,6 +26,9 @@
   retries: 3
   delay: 2
 
+- name: output jenkins password hash
+  debug: var="{{jenkins_password_hash}}"
+
 - name: Jenkins admin config.xml exists
   stat: path=/var/lib/jenkins/users/admin/config.xml
   until: st.stat.exists
