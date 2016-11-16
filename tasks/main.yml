@@ -31,8 +31,6 @@
   stat: path=/var/lib/jenkins/users/admin/config.xml
   until: st.stat.exists
   register: st
-  retries: 3
-  delay: 2
 
 - name: Jenkins output admin config.xml stat
   debug: var=st
