@@ -20,7 +20,7 @@
   become_user: jenkins
 
 - name: create Jenkins admin password hash
-  command: echo -n "{{ jenkins_admin_password }}{ ansible_jenkins }" | sha256sum - | aws '{ print $1; }'
+  command: "echo -n {{ jenkins_admin_password }}" | sha256sum - | awk '{ print $1; }'
   register: jenkins_password_hash
   become_user: jenkins
 
