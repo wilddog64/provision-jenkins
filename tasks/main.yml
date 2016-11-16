@@ -1,5 +1,5 @@
 ---
-- include "tasks/setup.{{ ansible_os_family }}.repo"
+- include: "tasks/setup.{{ ansible_os_family }}.repo"
 
 - name: Jenkins | install jenkins
   apt:
