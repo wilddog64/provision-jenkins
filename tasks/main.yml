@@ -20,8 +20,8 @@
   become_user: jenkins
 
 - name: create Jenkins admin password hash
-  shell: echo {{ jenkins_admin_password }} | sha256sum | perl -nle 's/\s+-$//g'
-  register: jenkins_password_hash
+  shell: echo {{ jenkins_admin_password }} | sha256sum
+  register: {{ jenkins_password_hash.stdout | regex_replace('\\s+-$', '') }}
   become: False
 
 - name: output jenkins password hash
