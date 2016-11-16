@@ -29,9 +29,6 @@
   register: jenkins_password_hash
   become: False
 
-- name: output jenkins password hash
-  debug: var="{{jenkins_password_hash}}"
-
 - name: Jenkins admin config.xml exists
   stat: path=/var/lib/jenkins/users/admin/config.xml
   until: st.stat.exists
