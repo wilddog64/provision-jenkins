@@ -44,7 +44,7 @@
     dest: /var/lib/jenkins/users/admin/config.xml
     regexp: '^(\s)*<passwordHash>(.*)'
     line: '      <passwordHash>ansible_jenkins:{{ jenkins_password_hash.stdout }}</passwordHash>'
-    state: absent
+    state: present
   when: st.stat.exists and jenkins_password_hash
   become_user: jenkins
   notify: restart Jenkins
