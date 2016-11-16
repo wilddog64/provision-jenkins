@@ -16,7 +16,7 @@
     state: installed
 
 - name: Jenkins | remove initial Jenkins password
-  file: name=/var/lib/jenkins/secrets/initialAdminPassword state=absent
+  file: path=/var/lib/jenkins/secrets/initialAdminPassword state=absent
   become_user: jenkins
 
 - name: create Jenkins admin password hash
