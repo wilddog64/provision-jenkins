@@ -50,16 +50,16 @@
   notify: restart Jenkins
 
 
-- name: Jenkins | grab Jenkins crumb
-  uri:
-    user: "{{ jenkins_admin_user }}"
-    password: "{{ jenkins_admin_password }}"
-    force_basic_auth: yes
-    return_content: yes
-  register: crumb_token
-  when: st.stat.exists == True
-  retries: 10
-  delay: 5
+# - name: Jenkins | grab Jenkins crumb
+#   uri:
+#     user: "{{ jenkins_admin_user }}"
+#     password: "{{ jenkins_admin_password }}"
+#     force_basic_auth: yes
+#     return_content: yes
+#   register: crumb_token
+#   when: st.stat.exists
+#   retries: 10
+#   delay: 5
 
 - name: debug jenkins crumb
   debug: var=crumb_token
