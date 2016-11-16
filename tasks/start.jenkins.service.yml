@@ -1,0 +1,4 @@
+---
+- name: Jenkins | start jenkins service
+  service: name=jenkins state=started
+  when: jenkins_password_hash
