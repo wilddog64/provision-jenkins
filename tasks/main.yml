@@ -15,14 +15,6 @@
     pkg: jenkins
     state: installed
 
-- name: Jenkins | supress wizard mode
-  lineinfile:
-    dest: /etc/default/jenkins
-    insertbefore: ^JENKINS_ARGS.*
-    line: "JAVA_ARGS={{ jenkins_java_args }}"
-    state: absent
-  become_user: jenkins
-
 - name: Jenkins | remove initial Jenkins password
   file: name=/var/lib/jenkins/secrets/initialAdminPassword state=absent
   become_user: jenkins
@@ -38,6 +30,14 @@
 
 - name: Jenkins output admin config.xml stat
   debug: var=st
+
+- name: Jenkins | supress wizard mode
+  lineinfile:
+    dest: /etc/default/jenkins
+    insertbefore: ^JENKINS_ARGS.*
+    line: "JAVA_ARGS={{ jenkins_java_args }}"
+    state: absent
+  become_user: jenkins
 
 - name: Jenkins | patch original password hash line
   lineinfile:
