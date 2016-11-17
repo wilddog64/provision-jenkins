@@ -1,0 +1,32 @@
+---
+var:
+  jenkins_init_file: /etc/default/jenkins
+
+- name: set jenkins home directory
+  lineinfile:
+    dest: "{{ jenkins_init_file }}"
+    regexp: '^JENKINS_HOME.*'
+    line: 'JENKINS_HOME={{ jenkins_home }}'
+  register: jenkins_home_config
+
+- name: set http port in jenkins config
+  lineinfile:
+    backrefs: yes
+    dest: "{{ jenkins_init_file }}"
+    regexp: '^{{ jenkins_http_port }}'
+    line: 'JENKINS_PORT={{ jenkins_http_port }}'
+    register: jenkins_http_config
+
+- name: create custom jenkin init scripts directory
+  file:
+    path: "{{ jenkins_home }}/init.groovy.d"
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: 0775
+
+- name: configure default users
+  template: src: basic-security.groovy
+  dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
+  register: jenkins_users_config
+
