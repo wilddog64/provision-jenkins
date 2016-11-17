@@ -12,7 +12,7 @@
     dest: "{{ jenkins_init_file }}"
     regexp: '^{{ jenkins_http_port }}'
     line: 'JENKINS_PORT={{ jenkins_http_port }}'
-    register: jenkins_http_config
+  register: jenkins_http_config
 
 - name: create custom jenkin init scripts directory
   file:
