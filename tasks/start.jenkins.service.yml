@@ -7,3 +7,4 @@
   wait_for: 
     host: "{{ jenkins_hostname }}"
     port: "{{ jenkins_http_port }}"
+    state: started
