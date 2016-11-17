@@ -39,4 +39,4 @@
      creates="{{ jenkins_home }}/plugins/{{ item }}.jpi"
   with_items: "{{ jenkins_plugins }}"
   when: jenkins_admin_password != ""
-  notify: restart jenkins
+  notify: restart Jenkins
