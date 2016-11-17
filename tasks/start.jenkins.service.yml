@@ -16,3 +16,14 @@
     path: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
     state: absent
 
+- name: Jenkins | remove initial Jenkins password
+  file: 
+    path: /var/lib/jenkins/secrets/initialAdminPassword
+    state: absent
+  ignore_errors: true
+  until: not st.stat.exists
+  register: filestat
+
+- name: output filestat
+  debug: var=filestat
+
