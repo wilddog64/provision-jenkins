@@ -3,4 +3,4 @@
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 # - include: "tasks/remove.{{ ansible_os_family }}.JenkinsAdmin.password.yml"
 # - include: "tasks/grab.jenkins.crumb.token.yml"
-# - include: "tasks/start.jenkins.service.yml"
+- include: "tasks/start.jenkins.service.yml"
