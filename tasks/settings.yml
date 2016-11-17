@@ -1,7 +1,4 @@
 ---
-var:
-  jenkins_init_file: /etc/default/jenkins
-
 - name: set jenkins home directory
   lineinfile:
     dest: "{{ jenkins_init_file }}"
