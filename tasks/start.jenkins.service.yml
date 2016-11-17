@@ -18,5 +18,5 @@
 
 - name: Jenkins | remove initial Jenkins password
   file: 
-    path: /var/lib/jenkins/secrets/initialAdminPassword
+    path: "{{ jenkins_home }}/secrets/initialAdminPassword"
     state: absent
