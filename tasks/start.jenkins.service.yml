@@ -3,7 +3,8 @@
   service: name=jenkins state=restarted
   when: (jenkins_users_config is defined and jenkins_users_config.changed) or
         (jenkins_http_config is defined and jenkins_http_config.changed) or
-        (jenkins_home_config is defined and jenkins_home_config.changed)
+        (jenkins_home_config is defined and jenkins_home_config.changed) or
+        (jenkins_supress_wizard is defined and jenkins_supress_wizard.changed)
 
 - name: Wait for Jenkins to start up before proceeding.
   wait_for:

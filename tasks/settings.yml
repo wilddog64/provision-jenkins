@@ -14,6 +14,13 @@
     line: 'JENKINS_PORT={{ jenkins_http_port }}'
   register: jenkins_http_config
 
+- name: supress wizard mode
+  lineinfile:
+    dest: "{{ jenkins_init_file }}"
+    insertbefore: "^JENKINS_ARGS.*"
+    line: "JAVA_ARGS=\"{{ jenkins_java_args }}\""
+  register: jenkins_supress_wizard
+
 - name: create custom jenkin init scripts directory
   file:
     path: "{{ jenkins_home }}/init.groovy.d"
