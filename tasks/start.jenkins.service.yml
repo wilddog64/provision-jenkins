@@ -1,10 +1,12 @@
 ---
 - name: Jenkins | start jenkins service
-  service: name=jenkins state=started
-  # when: jenkins_password_hash
+  service: name=jenkins state=restarted
+  when: (jenkins_users_config is defined and jenkins_users_config.changed) or
+        (jenkins_http_config is defined and jenkins_http_config.changed) or
+        (jenkins_home_config is defined and jenkins_home_config.changed)
 
 - name: Wait for Jenkins to start up before proceeding.
-  wait_for: 
+  wait_for:
     host: "{{ jenkins_hostname }}"
     port: "{{ jenkins_http_port }}"
     state: started
