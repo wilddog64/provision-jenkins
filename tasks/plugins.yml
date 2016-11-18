@@ -13,6 +13,11 @@
   args:
     creates: "{{ jenkins_home }}/updates/default.json"
 
+- name: install curl
+  apt:
+   pkg: curl
+   state: installed
+
 - name: update permissions for default.json
   file:
     path: "{{ jenkins_home }}/update/default.json"
