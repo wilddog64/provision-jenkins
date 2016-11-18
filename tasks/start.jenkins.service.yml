@@ -18,6 +18,4 @@
     state: absent
 
 - name: remove initial Jenkins password
-  file: 
-    path: "{{ jenkins_home }}/secrets/initialAdminPassword"
-    state: absent
+  command: bash -c [[ test -e "{{ jenkins_home }}/secrets/initialAdminPassword" ]] && rm -rf "{{ jenkins_home }}/secrets/initialAdminPassword"
