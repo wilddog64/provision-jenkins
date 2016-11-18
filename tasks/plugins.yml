@@ -15,8 +15,8 @@
 
 - name: install curl
   apt:
-   pkg: curl
-   state: installed
+    pkg: curl
+    state: installed
 
 - name: update permissions for default.json
   file:
