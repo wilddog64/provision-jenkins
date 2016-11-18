@@ -1,0 +1,16 @@
+---
+- name: ensure necessary packages are installed
+  package:
+    name:
+      - curl
+      - libselinux-python
+
+- name: ensure jenkins repo is installed
+  get_url:
+    url: "{{ jenkins_repo_url }}"
+    dest: /etc/yum.repos.d/jenkins.repo
+
+- name: add jenkins repo GPG key
+  rpm_key:
+    key: "{{ jenkins_repo_key_url }}"
+    state: present
