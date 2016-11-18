@@ -17,7 +17,7 @@
     path: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
     state: absent
 
-- name: Jenkins | remove initial Jenkins password
+- name: remove initial Jenkins password
   file: 
     path: "{{ jenkins_home }}/secrets/initialAdminPassword"
     state: absent
