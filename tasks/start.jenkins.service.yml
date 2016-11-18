@@ -19,7 +19,7 @@
     port: "{{ jenkins_http_port }}"
     state: started
 
-- name: remove Jenkins security init scripts after first startup
+- name: remove jenkins security init scripts after first startup
   file:
     path: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
     state: absent
