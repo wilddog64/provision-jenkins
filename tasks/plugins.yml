@@ -20,7 +20,6 @@
     group: jenkins
     mode: 0755
   when:  jenkins_plugins_folder_create.changed
-  until: state == 'present'
 
 - name: download jenkins-cli.jar file
   get_url:
