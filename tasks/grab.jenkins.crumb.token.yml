@@ -1,5 +1,5 @@
 ---
-- name: Jenkins | grab Jenkins crumb
+- name: grab jenkins crumb
   uri:
     user: "{{ jenkins_admin_user }}"
     password: "{{ jenkins_admin_password }}"
@@ -13,7 +13,7 @@
 - name: debug jenkins crumb
   debug: var=crumb_token
 
-- name: Jenkins | set crumb token
+- name: set crumb token
   set_fact:
     jenkins_crumb_token: "{{ crumb_token.json.crumbRequestField }}={{ crumb_token.json.crumb }}"
   when: crumb_token.changed

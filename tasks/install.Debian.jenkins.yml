@@ -1,5 +1,5 @@
 ---
-- name: Jenkins | install jenkins
+- name: install jenkins
   apt:
     pkg: jenkins
     state: installed
