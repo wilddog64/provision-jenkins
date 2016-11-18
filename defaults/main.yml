@@ -14,5 +14,4 @@ jenkins_java_args: -Djava.awt.headless=true -Djenkins.install.runSetupWizard=fal
 jenkins_admin_user: admin
 jenkins_admin_password: Flvby
 jenkins_home: /var/lib/jenkins
-# jenkins_init_file: /etc/default/jenkins
 jenkins_jar_location: /opt/jenkins-cli.jar
