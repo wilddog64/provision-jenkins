@@ -18,15 +18,15 @@
     pkg: curl
     state: installed
 
-# - name: update permissions for default.json
-#   file:
-#     path: "{{ jenkins_home }}/update/default.json"
-#     owner: jenkins
-#     group: jenkins
-#     mode: 0755
-#   when:  jenkins_plugins_folder_create.changed
-#   register: update_result
-#   until: update_result.state == 'present'
+- name: update permissions for default.json
+  file:
+    path: "{{ jenkins_home }}/update/default.json"
+    owner: jenkins
+    group: jenkins
+    mode: 0755
+  when:  jenkins_plugins_folder_create.changed
+  register: update_result
+  until: update_result.state == 'present'
 
 - name: download jenkins-cli.jar file
   get_url:
