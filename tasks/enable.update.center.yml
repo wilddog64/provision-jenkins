@@ -5,14 +5,15 @@
     dest: /tmp/update-center.json
 
 - name: get the content of update-center.json
-  content: "{{ lookup('update-center.json', '/tmp') }}"
+  shell: "cat /tmp/update-center"
+  register: content
 
 - name: post update-center.json to jenkins
   uri:
     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/updateCenter/byId/default/postBack"
     user: "{{ jenkins_admin_user }}"
     password: "{{ jenkins_admin_password }}"
-    body: "{{ content }}"
+    body: "{{ content.stdout }}"
     headers:
       Accept: application/json
     method: POST
