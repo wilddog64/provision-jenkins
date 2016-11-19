@@ -14,6 +14,7 @@
     user: "{{ jenkins_admin_user }}"
     password: "{{ jenkins_admin_password }}"
     body: "{{ content.stdout }}"
+    force_basic_auth: yes
     headers:
       Accept: application/json
     method: POST
