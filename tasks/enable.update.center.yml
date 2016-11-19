@@ -3,6 +3,7 @@
   get_url:
     url: "{{ jenkins_update_center_json_url }}"
     dest: /tmp/update-center.json
+  become_user: jenkins
 
 - name: get the content of update-center.json
   shell: "cat /tmp/update-center.json | sed '1d;$d'"
