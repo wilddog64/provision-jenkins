@@ -5,7 +5,7 @@
     dest: /tmp/update-center.json
 
 - name: get the content of update-center.json
-  shell: "cat /tmp/update-center"
+  shell: "cat /tmp/update-center.json"
   register: content
 
 - name: post update-center.json to jenkins
