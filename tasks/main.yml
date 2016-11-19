@@ -4,3 +4,4 @@
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 - include: "tasks/settings.yml"
 - include: "tasks/start.jenkins.service.yml"
+- include: "tasks/enable.update.center.yml"

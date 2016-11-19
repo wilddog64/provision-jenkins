@@ -15,3 +15,4 @@ jenkins_admin_user: admin
 jenkins_admin_password: Flvby
 jenkins_home: /var/lib/jenkins
 jenkins_jar_location: /opt/jenkins-cli.jar
+jenkins_update_center_json_url: https://updates.jenkins-ci.org/update-center.actual.json

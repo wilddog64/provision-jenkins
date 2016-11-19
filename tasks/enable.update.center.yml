@@ -1,0 +1,12 @@
+---
+- name: download update-center.json
+  get_url:
+    url: "{{ jenkins_update_center_json_url }}"
+    dest: /tmp/update-center.json
+
+- name: post update-center.json to jenkins
+  uri:
+    url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/updateCenter/byId/default/postBack"
+    headers:
+      Accept: application/json
+    method: POST
