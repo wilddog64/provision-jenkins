@@ -9,12 +9,13 @@
   register: content
 
 - name: post update-center.json to jenkins
-  uri:
-    url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/updateCenter/byId/default/postBack"
-    user: "{{ jenkins_admin_user }}"
-    password: "{{ jenkins_admin_password }}"
-    body: "{{ content.stdout }}"
-    force_basic_auth: yes
-    headers:
-      Accept: application/json
-    method: POST
+  shell: "curl -X POST --user {{ jenkins_admin_user }}:{{ jenkins_admin_password }} --data /tmp/update-center.json http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/updateCenter/byId/default/postBack"
+#   uri:
+#     url: "http://{{ jenkins_hostname }}:{{ jenkins_http_port }}/updateCenter/byId/default/postBack"
+#     user: "{{ jenkins_admin_user }}"
+#     password: "{{ jenkins_admin_password }}"
+#     body: "{{ content.stdout }}"
+#     force_basic_auth: yes
+#     headers:
+#       Accept: application/json
+#     method: POST
