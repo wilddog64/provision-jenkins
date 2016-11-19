@@ -6,6 +6,12 @@
   become: true
   become_user: jenkins
 
+- name: set update-center.json own by jenkins
+  file:
+    path: /tmp/update-center.json
+    owner: jenkins
+    group: jenkins
+
 - name: get the content of update-center.json
   shell: "cat /tmp/update-center.json | sed '1d;$d'"
   register: content
