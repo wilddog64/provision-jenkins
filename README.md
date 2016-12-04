@@ -43,7 +43,9 @@ There's no dependencies for this role.
 
     ---
     - hosts: all
-      gather_facts: yes
+      gather_facts: no
       become: yes
       roles:
         - jenkins
+
+The role has a task that will collect facts. So we turn off `gather_facts` at the playbook level
