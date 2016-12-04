@@ -33,6 +33,8 @@ These variables are not OS specific ones but for jenkins itself.
 * jenkins_jar_location - where jenkins-cli.jar store. The default value is `/opt/jenkins-cli.jar`
 * jenkins_update_center_json_url - where to download update-center.json. The default value is `https://updates.jenkins-ci.org/update-center.json`
 
+Note: the value set for `jenkins_admin_password` is for testing only. For production use, you should move this setting to `ansible-vault`
+
 # Dependencies
 
 There's no dependencies for this role.
