@@ -28,11 +28,12 @@
     owner: jenkins
     group: jenkins
     mode: 0775
-  register: directory_created
+  register: jenkins_init_directory_created
   # notify: configure default users
 
 - name: configure default users
   template:
     src: basic-security.groovy
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
-  when: directory_created.changed
+  register: jenkins_init_config
+  when: jenkins_init_directory_created.changed
