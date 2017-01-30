@@ -33,3 +33,4 @@ dreambox/etc/jenkins.ini
 dreambox/etc/users
 tmp/
 *.retry
+secrets/
