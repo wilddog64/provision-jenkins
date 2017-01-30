@@ -1,5 +1,8 @@
 ---
 - name: install jenkins
   package:
-    name: jenkins
+    name: "{{ item }}"
     state: installed
+  with_items:
+    - jenkins
+    - git
