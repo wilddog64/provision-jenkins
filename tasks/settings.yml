@@ -40,16 +40,16 @@
 
 - name: create .ssh directory
   file:
-    path: /root/.ssh
+    path: "{{ jenkins_home }}/.ssh"
     state: directory
-    owner: root
-    group: root
-    mode: "0600"
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
 
 - name: deploy ssh rsa key
   copy:
     content: "{{ ssh_private_key }}"
-    dest: /root/.ssh/id_rsa
-    owner: root
-    group: root
+    dest: "{{ jenkins_home }}/.ssh/id_dsa"
+    owner: jenkins
+    group: jenkins
     mode: "0600"
