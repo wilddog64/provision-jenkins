@@ -7,5 +7,8 @@
 
   vars:
     ssh_private_key: "{{ vault_ssh_private_key }}"
+    oracle_java_version: 8
+
   roles:
+    - provision-oracle-java
     - provision-jenkins
