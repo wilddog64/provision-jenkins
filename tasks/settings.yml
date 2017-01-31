@@ -37,19 +37,3 @@
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
   register: jenkins_init_config
   when: jenkins_init_directory_created.changed
-
-- name: create .ssh directory
-  file:
-    path: "{{ jenkins_home }}/.ssh"
-    state: directory
-    owner: jenkins
-    group: jenkins
-    mode: "0755"
-
-- name: deploy ssh rsa key
-  copy:
-    content: "{{ ssh_private_key }}"
-    dest: "{{ jenkins_home }}/.ssh/id_dsa"
-    owner: jenkins
-    group: jenkins
-    mode: "0600"
