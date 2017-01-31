@@ -37,3 +37,13 @@
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
   register: jenkins_init_config
   when: jenkins_init_directory_created.changed
+
+- name: manage jenkins ssh keys
+  user:
+    name: jenkins
+    createhome: no
+    generate_ssh_key: yes
+    group: jenkins
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+    ssh_key_passphrase: "{{ sshkey_passphrase }}"
