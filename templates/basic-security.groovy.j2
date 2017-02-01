@@ -36,16 +36,26 @@ password = hudson.security.HudsonPrivateSecurityRealm.Details.fromPlainPassword(
 user.addProperty(password)
 user.save()
 
-// create a global credential that bases on SSH key. The private key is created and managed by Ansible
-String keyfile = "{{ jenkins_sshkey_file }}"
-global_domain = Domain.global()
-credential_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
-credential = new BasicSSHUserPrivateKey(
-    CredentialsScope.GLOBAL,
-    null,
-    "jenkins",
-    new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(keyfile),
-    "{{ sshkey_passphrase }}",
-    "Ansible Managed SSH credential"
+// load a list of credentials from jenkins and
+// search result to see if user jenkins exists
+def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+    com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials.class,
+    jenkins.model.Jenkins.instance
 )
-credential_store.addCredentials(global_domain, credential)
+def found_credential = creds.findResult { it.username == "jenkins" ? it : null }
+
+// create a global credential that bases on SSH key. The private key is created and managed by Ansible
+if ( !found_credential ) {
+   String keyfile = "{{ jenkins_sshkey_file }}"
+   global_domain = Domain.global()
+   credential_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+   credential = new BasicSSHUserPrivateKey(
+       CredentialsScope.GLOBAL,
+       null,
+       "jenkins",
+       new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(keyfile),
+       "{{ sshkey_passphrase }}",
+       "Ansible Managed SSH credential"
+   )
+   credential_store.addCredentials(global_domain, credential)
+}
