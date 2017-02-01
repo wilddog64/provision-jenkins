@@ -21,6 +21,14 @@
     line: "JAVA_ARGS=\"{{ jenkins_java_args }}\""
   register: jenkins_supress_wizard
 
+- name: deploy shell scripts for install jenkins plugins
+  template:
+    src: install_jenkins_plugin.sh.j2
+    dest: "{{ jenkins_home }}/install_jenkins_plugin.sh"
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
+
 - name: create custom jenkin init scripts directory
   file:
     path: "{{ jenkins_home }}/init.groovy.d"
