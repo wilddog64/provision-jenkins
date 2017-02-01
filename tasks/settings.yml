@@ -33,7 +33,7 @@
 
 - name: configure default users
   template:
-    src: basic-security.groovy
+    src: basic-security.groovy.j2
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
   register: jenkins_init_config
   when: jenkins_init_directory_created.changed
