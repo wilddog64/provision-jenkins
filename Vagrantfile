@@ -25,9 +25,5 @@ Vagrant.configure("2") do |config|
     # ansible.verbose           = 'vvv'
     ansible.playbook   = 'tests/playbook.yml'
 	ansible.vault_password_file = 'secrets/my_pass.txt'
-    ansible.extra_vars = {
-      'java_version' => 8,
-      'jenkins_admin_password' => 'admin',
-    }
   end
 end
