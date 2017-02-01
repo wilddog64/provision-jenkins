@@ -39,8 +39,10 @@ user.save()
 // load a list of credentials from jenkins and
 // search result to see if user jenkins exists
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-    com.cloudbees.plugins.credentials.common.StandardUsernamePasswordCredentials.class,
-    jenkins.model.Jenkins.instance
+    com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
+	jenkins.model.Jenkins.instance,
+	null,
+	null
 )
 def found_credential = creds.findResult { it.username == "jenkins" ? it : null }
 
