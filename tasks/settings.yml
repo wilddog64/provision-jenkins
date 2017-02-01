@@ -29,6 +29,23 @@
     group: jenkins
     mode: "0755"
 
+- name: install minimum plugins for jenkins
+  shell: >
+    {{ jenkins_home }}/install_jenkins_plugin.sh {{ item }}
+  args:
+    creates: "{{ jenkins_home }}/plugins/{{ item }}"
+  register: install_plugins
+  with_items:
+    - ssh-credentials
+    - icon-shim
+
+# immediately restart jenkins so plugins are loaded
+- name: restart jenkins for plugins to load
+  service:
+    name: jenkins
+    state: restarted
+  when: install_plugins.changed
+
 - name: create custom jenkin init scripts directory
   file:
     path: "{{ jenkins_home }}/init.groovy.d"
