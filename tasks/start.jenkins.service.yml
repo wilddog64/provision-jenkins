@@ -20,9 +20,3 @@
     port: "{{ jenkins_http_port }}"
     state: started
     delay: 15
-
-# remove init script after jenkins fully started
-- name: remove groovy init script
-  file:
-    path: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
-    state: absent
