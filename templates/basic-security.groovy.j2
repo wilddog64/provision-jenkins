@@ -7,7 +7,10 @@ import com.cloudbees.plugins.credentials.*
 import com.cloudbees.plugins.credentials.common.*
 import com.cloudbees.plugins.credentials.domains.*
 import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
-
+import hudson.plugins.sshslaves.*;
+import hudson.model.*
+import jenkins.model.*
+import hudson.security.*
 
 def instance = Jenkins.getInstance()
 instance.setNumExecutors(5)
@@ -25,3 +28,17 @@ if (!instance.isUseSecurity()) {
     instance.setAuthorizationStrategy(strategy)
     instance.save()
 }
+
+// create a global credential that bases on SSH key. The private key is created and managed by Ansible
+String keyfile = '"{{ jenkins_sshkey_file }}"'
+global_domain = Domain.global()
+credential_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+credential = new BasicSSHUserPrivateKey(
+    CredentialsScope.GLOBAL,
+    null,
+    "jenkins",
+    new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(keyfile),
+    "{{ sshkey_passphrase }}",
+    "Ansible Managed SSH credential"
+)
+credential_store.addCredentials(global_domain, credential)
