@@ -31,6 +31,10 @@
   register: jenkins_init_directory_created
   # notify: configure default users
 
+- name: create jenkins_sshkey_file fact
+  set_fact:
+    jenkins_sshkey_file: "{{ jenkins_home }}/.ssh/id_rsa"
+
 - name: configure default users
   template:
     src: basic-security.groovy.j2
