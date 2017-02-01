@@ -38,6 +38,9 @@
   with_items:
     - ssh-credentials
     - icon-shim
+    - github
+    - scm-sync-configuration
+    - jobConfigHistory
 
 # immediately restart jenkins so plugins are loaded
 - name: restart jenkins for plugins to load
