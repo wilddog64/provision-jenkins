@@ -29,6 +29,13 @@ if (!instance.isUseSecurity()) {
     instance.save()
 }
 
+// update user password
+user = hudson.model.User.get("admin")
+user.setFullName("dreambox admin")
+password = hudson.security.HudsonPrivateSecurityRealm.Details.fromPlainPassword("{{ jenkins_admin_password }}")
+user.addProperty(password)
+user.save()
+
 // create a global credential that bases on SSH key. The private key is created and managed by Ansible
 String keyfile = "{{ jenkins_sshkey_file }}"
 global_domain = Domain.global()
