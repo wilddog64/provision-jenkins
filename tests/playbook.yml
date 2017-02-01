@@ -9,6 +9,7 @@
     ssh_private_key: "{{ vault_ssh_private_key }}"
     oracle_java_version: 8
     sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
+    jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
 
   roles:
     - provision-oracle-java
