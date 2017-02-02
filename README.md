@@ -18,7 +18,7 @@ support two OS families, `Debian` and `RedHat`. The variables are,
 * jenkins_repo_url - a jekins repo url
 * jenkins_ini_file - a jenkins initialize file
 
-## General Variables
+## Jenkins Variables
 These variables are not OS specific ones but for jenkins itself.
 
 * jenkins_connection_delay
