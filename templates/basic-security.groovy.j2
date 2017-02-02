@@ -62,6 +62,12 @@ if ( !found_credential ) {
    credential_store.addCredentials(global_domain, credential)
 }
 
+// configure git commiter information
+def desc = instance.getDescriptor("hudson.plugins.git.GitSCM")
+desc.setGlobalConfigName('{{ jenkins_git_commiter_name }}')
+desc.setGlobalConfigEmail('{{ jenkins_git_commiter_email }}')
+desc.save()
+
 // configure jenkins security
 def strategy = new GlobalMatrixAuthorizationStrategy()
 
