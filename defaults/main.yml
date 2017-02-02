@@ -21,4 +21,5 @@ jenkins_default_plugins:
   - scm-sync-configuration
   - jobConfigHistory
   - scriptler
+  - matrix-auth
 
