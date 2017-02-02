@@ -22,4 +22,4 @@ jenkins_default_plugins:
   - jobConfigHistory
   - scriptler
   - matrix-auth
-
+  - build-token-root
