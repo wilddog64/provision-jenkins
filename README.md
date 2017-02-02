@@ -45,7 +45,25 @@ There's no dependencies for this role.
     - hosts: all
       gather_facts: no
       become: yes
+
+	  vars:
+        oracle_java_version: 8
+        sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
+        jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
+        jenkins_git_commiter_name: ec2-deployer
+        jenkins_git_commiter_email: operations@dreambox.com
+        jenkins_github_url: git@github:wilddog64/jenkins-scm.git
+        jenkins_sync_repo_empty: 1
+
       roles:
+	    - provision-oracle-java
         - provision-jenkins
+
+The above example `playbook` will provision a node with
+
+* An `Oracle Java 8`
+* An ssh private key with passphrase
+* A proper username and email for a `git commiter`
+* A git repo url for `scm-sync-configuration` jenkins plugin
 
 The role has a task that will collect facts. So we turn off `gather_facts` at the playbook level
