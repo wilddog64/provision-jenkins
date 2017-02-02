@@ -33,6 +33,29 @@ These variables are not OS specific ones but for jenkins itself.
 * jenkins_jar_location - where jenkins-cli.jar store. The default value is `/opt/jenkins-cli.jar`
 * jenkins_update_center_json_url - where to download update-center.json. The default value is `https://updates.jenkins-ci.org/update-center.json`
 
+## GitSCM configuration
+The two variables below are used to configure `git comitter` info
+
+* jenkins_git_cmmiter_name - a name for the committer
+* jenkins_git_commiter_email - an email address for the comitter
+
+## scm-sync-configuration variables
+This role will pre-install [SCM Sync configuration jenkins plugin](https://wiki.jenkins-ci.org/display/JENKINS/SCM+Sync+configuration+plugin), and the following are variables related to it,
+
+* jenkins_github_url - this is an url that `scm-sync-configuration` can use to sync the configuration over. _Note_, the repo must exist for it.
+* jenkins_sync_repo_empty - a boolean variable to tell `provision-jenkins` to configure the plugin.
+
+## Plugins Install At Jenkins Initial Setup Time
+
+* jenkins_default_plugins - this variable is a hash that contains a number of plugins will be installed during the jenkins configuration times. The hash contains the following `jenkins plugins`
+
+	* ssh-credentials - this plugin is used to store ssh private key and passphrase
+	* icon-shim - some plugins such as ssh-credentials depends on it to work
+	* github - a plugin for interact with github.com
+	* scm-sync-configuraion - a plugin backup jenkins configuration and sync with github
+	* matrix-auth - a plugin this role uses to configure system security
+	* build-token-root - a plugin that allow remote job execution
+
 Note: the value set for `jenkins_admin_password` is for testing only. For production use, you should move this setting to `ansible-vault`
 
 # Dependencies
