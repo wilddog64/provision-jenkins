@@ -61,3 +61,21 @@ if ( !found_credential ) {
    )
    credential_store.addCredentials(global_domain, credential)
 }
+
+// configure jenkins security
+def strategy = new GlobalMatrixAuthorizationStrategy()
+
+strategy.add(Jenkins.READ,'authenticated')
+strategy.add(Item.READ,'authenticated')
+strategy.add(Item.DISCOVER,'authenticated')
+strategy.add(Item.CANCEL,'authenticated')
+strategy.add(Item.BUILD, 'authenticated')
+
+// configure admin account security
+strategy.add(Jenkins.ADMINISTER, "admin")
+
+// set strategy for a given instance
+instance.setAuthorizationStrategy(strategy)
+
+instance.save()
+
