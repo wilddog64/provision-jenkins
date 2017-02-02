@@ -11,6 +11,8 @@
     jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
     jenkins_git_commiter_name: ec2-deployer
     jenkins_git_commiter_email: operations@dreambox.com
+    jenkins_github_url: git@github:wilddog64/jenkins-scm.git
+    jenkins_sync_repo_empty: 1
 
   roles:
     - provision-oracle-java

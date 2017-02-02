@@ -85,3 +85,54 @@ instance.setAuthorizationStrategy(strategy)
 
 instance.save()
 
+// now we need to configure scm sync plugin
+// these are libraries necessary to configure scm-sync plugin
+import hudson.plugins.scm_sync_configuration.xstream.migration.DefaultSSCPOJO
+import hudson.plugins.scm_sync_configuration.scms.*
+import hudson.plugins.scm_sync_configuration.ScmSyncConfigurationPlugin
+import net.sf.json.JSONObject
+import org.kohsuke.stapler.StaplerRequest
+import groovy.mock.interceptor.MockFor
+import org.jenkinsci.plugins.*
+
+// create a mock object
+def mock = [
+  getParameter: {
+    key -> switch(key) {
+      case 'gitRepositoryUrl':
+	    return "{{ jenkins_github_url }}"
+      case 'commitMessagePattern':
+        return 'Sync: [message]'
+      case 'scm':
+        return 'hudson.plugins.scm_sync_configuration.scms.ScmSyncGitSCM'
+      default:
+        return null
+    }
+  },
+  getParameterValues: {
+    return null
+  }
+] as StaplerRequest
+
+def data = new DefaultSSCPOJO()
+data.setScmRepositoryUrl("{{ jenkins_github_url }}")
+data.setScm(SCM.valueOf(ScmSyncGitSCM.class))
+data.setNoUserCommitMessage(false)
+data.setDisplayStatus(true)
+data.setCommitMessagePattern('Sync: [message]')
+
+def jsonObj = new JSONObject()
+jsonObj.put('noUserCommitMessage', 'false')
+jsonObj.put('displayStatus', 'true')
+
+def scmSyncPlugin = instance.getPlugin('scm-sync-configuration')
+
+if ( {{ jenkins_sync_repo_empty }} ) {
+  scmSyncPlugin.configure(mock, jsonObj)
+}
+else {
+  scmSyncPlugin.loadData(data)
+  scmSyncPlugin.business.reloadAllFilesFromScm()
+  scmSyncPlugin.business.synchronizeAllConfigs(ScmSyncConfigurationPlugin.AVAILABLE_STRATEGIES)
+  instance.save()
+}
