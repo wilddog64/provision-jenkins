@@ -37,7 +37,7 @@ Note: the value set for `jenkins_admin_password` is for testing only. For produc
 
 # Dependencies
 
-There's no dependencies for this role.
+If you want `jenkins` to run with standard `Oracle Java`, you will have to include `provision-oracle-java` role,and set `oracle_java_version` variable.
 
 # Example Playbook
 
