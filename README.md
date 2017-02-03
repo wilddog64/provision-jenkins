@@ -86,8 +86,8 @@ If you want `jenkins` to run with standard `Oracle Java`, you will have to inclu
         oracle_java_version: 8
         sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
         jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
-        jenkins_git_commiter_name: ec2-deployer
-        jenkins_git_commiter_email: operations@dreambox.com
+        jenkins_git_commiter_name: your-deployer
+        jenkins_git_commiter_email: your-deployer@your-org
         jenkins_github_url: git@github:wilddog64/jenkins-scm.git
         jenkins_sync_repo_empty: 1
 
