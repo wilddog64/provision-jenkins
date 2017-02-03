@@ -15,6 +15,5 @@ jenkins_default_plugins:
   - github
   - scm-sync-configuration
   - jobConfigHistory
-  - scriptler
   - matrix-auth
   - build-token-root
