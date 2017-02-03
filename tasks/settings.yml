@@ -57,6 +57,7 @@
 - name: create jenkins_sshkey_file fact
   set_fact:
     jenkins_sshkey_file: "/root/.ssh/id_rsa"
+    jenkins_ssh_public_keyfile: "/root/.ssh/id_rsa.pub"
 
 - name: configure default users
   template:
