@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
     ansible.limit             = 'all'
     ansible.galaxy_roles_path = '..'
     # ansible.install_mode      = :pip
-    # ansible.verbose           = 'vvv'
+    ansible.verbose           = 'vv'
     ansible.playbook   = 'tests/playbook.yml'
 	ansible.vault_password_file = 'secrets/my_pass.txt'
   end
