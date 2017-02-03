@@ -15,7 +15,7 @@
   register: sshkey
   changed_when: false
 
-- name: upload ssh jenkins ssh public key if it does not exist
+- name: upload jenkins ssh public key if it does not exist
   command: >
     curl -i -f -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/user/keys
       -H 'Content-Type: application/json'
