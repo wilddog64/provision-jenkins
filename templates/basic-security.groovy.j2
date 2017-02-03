@@ -100,7 +100,7 @@ def mock = [
   getParameter: {
     key -> switch(key) {
       case 'gitRepositoryUrl':
-	    return "{{ jenkins_github_url }}"
+	    return "git@github:{{ jenkins_github_repo }}"
       case 'commitMessagePattern':
         return 'Sync: [message]'
       case 'scm':
@@ -115,7 +115,7 @@ def mock = [
 ] as StaplerRequest
 
 def data = new DefaultSSCPOJO()
-data.setScmRepositoryUrl("{{ jenkins_github_url }}")
+data.setScmRepositoryUrl("git@github:{{ jenkins_github_repo }}")
 data.setScm(SCM.valueOf(ScmSyncGitSCM.class))
 data.setNoUserCommitMessage(false)
 data.setDisplayStatus(true)
