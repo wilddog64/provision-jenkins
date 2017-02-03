@@ -11,6 +11,7 @@
     jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
     jenkins_git_commiter_name: ec2-deployer
     jenkins_git_commiter_email: operations@dreambox.com
+    jenkins_github_org: dreamboxlearning
     jenkins_github_repo: dreamboxlearning/{{ ansible_hostname }}-jenkins-scm
     jenkins_sync_repo_empty: 1
     jenkins_github_api_token: "{{ vault_jenkins_github_api_token }}"
