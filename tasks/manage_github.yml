@@ -50,4 +50,5 @@
       team_id: 1158825  # this is chef-repos
       description: ansible manage github scm sync repo
     status_code: 201
-  when: "{{not github_repos.json | selectattr('name', 'equalto', jenkins_github_repo) | list }}"
+  register: repo_create_result
+  failed_when: "'FAILED!' in repo_create_result and 'name already exists' not in repo_create_result.json.errors.0.message"
