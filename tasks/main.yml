@@ -6,5 +6,5 @@
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 - include: "tasks/settings.yml"
-- include: "tasks/upload_sshkey_to_github.yml"
+- include: "tasks/manage_github.yml"
 - include: "tasks/start.jenkins.service.yml"
