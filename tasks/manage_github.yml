@@ -1,5 +1,5 @@
 ---
-- name: upload ssh public key to github
+- name: list ssh github public keys
   command: >
     curl -f -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/user/keys
   register: curl_output
@@ -24,9 +24,30 @@
   when: "{{not github_keys | selectattr('title', 'equalto', jenkins_git_commiter_name) | list }}"
 
 - name: get a list of github repos
-  command: >
-    curl -i -f
-    -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/orgs/{{ jenkins_github_org }}/repos
-  register: github_org
+  uri:
+    url: https://api.github.com/orgs/{{ jenkins_github_org }}/repos
+    method: GET
+    headers:
+      Authorization: token {{ jenkins_github_api_token }}
+      Content-Type: application/json
+    return_content: yes
+    status_code: 200
+  register: github_repos
+  changed_when: false
 
 - name: create github repo
+  uri:
+    url: https://api.github.com/orgs/{{ jenkins_github_org }}/repos
+    method: POST
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: token {{ jenkins_github_api_token }}
+    body_format: json
+    body:
+      name: "{{ jenkins_github_repo }}"
+      privatre: true
+      team_id: 1158825  # this is chef-repos
+      description: ansible manage github scm sync repo
+    status_code: 201
+  when: "{{not github_repos.json | selectattr('name', 'equalto', jenkins_github_repo) | list }}"
