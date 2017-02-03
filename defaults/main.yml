@@ -17,3 +17,4 @@ jenkins_default_plugins:
   - jobConfigHistory
   - matrix-auth
   - build-token-root
+  - ssh-agent
