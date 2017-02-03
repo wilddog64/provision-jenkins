@@ -17,6 +17,14 @@
   command: >
     curl -i -f -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/user/keys
       -H 'Content-Type: application/json'
-      -H 'Accept: application/json' 
+      -H 'Accept: application/json'
       -d '{ "title": "{{ jenkins_git_commiter_name }}", "key": "{{ sshkey.stdout }}" }'
   when: "{{not github_keys | selectattr('title', 'equalto', jenkins_git_commiter_name) | list }}"
+
+- name: get a list of github repos
+  command: >
+    curl -i -f
+    -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/orgs/{{ jenkins_github_org }}/repos
+  register: github_org
+
+- name: create github repo
