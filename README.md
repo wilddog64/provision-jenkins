@@ -56,6 +56,19 @@ This role will pre-install [SCM Sync configuration jenkins plugin](https://wiki.
 	* matrix-auth - a plugin this role uses to configure system security
 	* build-token-root - a plugin that allow remote job execution
 
+## Jenkins github management variables
+The `provision-jenkins` role use `scm-sync-configuration` plugin to backup systemwise configuration. In order for this plugin to work effectively, these following variables need to be set
+
+* jenkins_github_org - the orgnization that this repo will be associated with
+* jenkins_github_repo - a repo will be created under the `jenkins_github_org`
+* jenkins_github_api_token - an OAuth token that allow `provision-jenkins` role to manage `repos` in github.com.You will have to first create an account and generate an `api token` that has the following permissions,
+
+  * repo:status, repo_deployment, and public_repo
+  * admin:public_key, write:public_key, and read:public_key
+  * delete_repo
+
+  The `github api token` should be treated as a sensitivity information. It should not be stored as a plain text. We strongly suggest to encrypt this information via `ansible-vault` for better a secunirityd.
+
 Note: the value set for `jenkins_admin_password` is for testing only. For production use, you should move this setting to `ansible-vault`
 
 # Dependencies
