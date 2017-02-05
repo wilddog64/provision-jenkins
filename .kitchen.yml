@@ -1,0 +1,31 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  require_chef_omnibus: false
+  name: ansible_push
+  host: test-kitchen
+  require_ansible_repo: true
+  playbook: tests/playbook.yml
+  roles_path: ..
+  ansible_version: latest
+  host_key_checking: false
+  vault_password_file: ./secrets/my_pass.txt
+  idempotency_test: false
+  chef_bootstrap_url: nil
+  verbose: vv
+  extra_vars:
+    env: stage2
+    extract_build_number: 16
+    extract_debug: 'False'
+    skip_migration: yes
+
+platforms:
+  - name: hashicorp/precise64
+  - name: centos/7
+
+suites:
+  - name: default
+    run_list:
+    attributes:
