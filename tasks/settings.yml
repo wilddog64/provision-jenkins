@@ -14,12 +14,20 @@
     line: 'JENKINS_PORT={{ jenkins_http_port }}'
   register: jenkins_http_config
 
+- name: get content of a jenkins environment file
+  command: >
+    cat {{ jenkins_init_file }}
+  register: init_file_content
+
 - name: supress wizard mode
   lineinfile:
     dest: "{{ jenkins_init_file }}"
-    insertbefore: "^JENKINS_ARGS.*"
-    line: "JAVA_ARGS=\"{{ jenkins_java_args }}\""
+    regexp: '^((?:JENKINS_JAVA_|JAVA_)(?:OPTIONS|ARGS.*?))="(.*)"'
+    line: '\1="\2 {{ jenkins_java_args }}"'
+    backrefs: yes
   register: jenkins_supress_wizard
+  when: |
+    jenkins_java_args not in init_file_content.stdout
 
 - name: deploy shell scripts for install jenkins plugins
   template:
