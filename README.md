@@ -73,6 +73,7 @@ Note: the value set for `jenkins_admin_password` is for testing only. For produc
 # Dependencies
 
 If you want `jenkins` to run with standard `Oracle Java`, you will have to include `provision-oracle-java` role,and set `oracle_java_version` variable.
+This role also includes [ansible-install-python-pip](https://github.com/wilddog64/ansible-install-python-pip) to install `pip` and update it.
 
 # Example Playbook
 
