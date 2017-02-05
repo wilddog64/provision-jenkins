@@ -26,7 +26,6 @@ These variables are not OS specific ones but for jenkins itself.
 * jenkins_hostname - a host name for the jenkins service. Default is `localhost`
 * jenkins_http_port - jenkins endpoint port. Default value is 8080
 * jenkins_plugins - what jenkins plugins need to be installed
-* jenkins_java_args - options passes to java for start up. By default, this set to `-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false` to by pass jenkins setup wizard
 * jenkins_admin_user - admin user for jenkins
 * jenkins_admin_password - admin password
 * jenkins_home - jenkins home directory. The default value is set to `/var/lib/jenkins`
