@@ -19,15 +19,19 @@
     cat {{ jenkins_init_file }}
   register: init_file_content
 
+- name: create supress jenkins setup wizard java option
+  set_fact:
+    wizard_supress_java_opt: -Djenkins.install.runSetupWizard=false
+
 - name: supress wizard mode
   lineinfile:
     dest: "{{ jenkins_init_file }}"
     regexp: '^((?:JENKINS_JAVA_|JAVA_)(?:OPTIONS|ARGS.*?))="(.*)"'
-    line: '\1="\2 {{ jenkins_java_args }}"'
+    line: '\1="\2 {{ wizard_supress_java_opt }}"'
     backrefs: yes
   register: jenkins_supress_wizard
   when: |
-    jenkins_java_args not in init_file_content.stdout
+    wizard_supress_java_opt not in init_file_content.stdout
 
 - name: deploy shell scripts for install jenkins plugins
   template:
