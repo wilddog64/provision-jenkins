@@ -3,6 +3,10 @@
   setup:
 
 - include_vars: "{{ ansible_os_family }}.yml"
+- name: install python-pip
+  include_role:
+    name: install-python-pip
+
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 - include: "tasks/settings.yml"
