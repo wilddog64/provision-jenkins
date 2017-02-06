@@ -11,3 +11,11 @@
     owner: root
     group: root
     mode: "0755"
+
+- name: create jenkins-cli password file
+  copy:
+    content: "{{ jenkins_admin_password }}"
+    dest: /opt/jenkins/jenkins-password.txt
+    owner: root
+    group: root
+    mode: "0600"
