@@ -68,8 +68,8 @@
 
 - name: create jenkins_sshkey_file fact
   set_fact:
-    jenkins_sshkey_file: "/root/.ssh/id_rsa"
-    jenkins_ssh_public_keyfile: "/root/.ssh/id_rsa.pub"
+    jenkins_sshkey_file: "{{ jenkins_home }}/.ssh/id_rsa"
+    jenkins_ssh_public_keyfile: "{{ jenkins_home }}/.ssh/id_rsa.pub"
 
 - name: configure default users
   template:
@@ -80,7 +80,7 @@
 
 - name: manage jenkins ssh keys
   user:
-    name: root
+    name: jenkins
     createhome: no
     generate_ssh_key: yes
     group: jenkins
