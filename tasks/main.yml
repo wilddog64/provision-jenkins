@@ -12,3 +12,4 @@
 - include: "tasks/settings.yml"
 - include: "tasks/manage_github.yml"
 - include: "tasks/start.jenkins.service.yml"
+- include: "tasks/install-config-jenkins.yml"

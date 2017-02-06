@@ -20,17 +20,3 @@
     port: "{{ jenkins_http_port }}"
     state: started
     delay: 15
-
-- name: download jenkins-cli
-  command: >
-    curl http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar -o /opt/jenkins/jenkins-cli.jar
-  args:
-    creates: /opt/jenkins/jenkins-cli.jar
-
-- name: setup permissions
-  file:
-    path: /opt/jenkins/jenkins-cli.jar
-    owner: root
-    group: root
-    mode: "0755"
-
