@@ -87,3 +87,16 @@
     ssh_key_bits: 2048
     ssh_key_file: .ssh/id_rsa
     ssh_key_passphrase: "{{ sshkey_passphrase }}"
+
+- name: create a jenkins-cli directory
+  file:
+    path: /opt/jenkins
+    state: directory
+
+- name: download jenkins-cli
+  get_url:
+    url: http://localhost:8080/jnlpJars/jenkins-cli.jar
+    dest: /opt/jenkins
+    owner: root
+    group: root
+    mode: "0755"
