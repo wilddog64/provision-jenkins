@@ -1,13 +1,13 @@
 ---
 - name: download jenkins-cli
   command: >
-    curl http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar -o /opt/jenkins/jenkins-cli.jar
+    curl http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar -o /bin/jenkins-cli.jar
   args:
-    creates: /opt/jenkins/jenkins-cli.jar
+    creates: /bin/jenkins-cli.jar
 
 - name: setup permissions
   file:
-    path: /opt/jenkins/jenkins-cli.jar
+    path: /bin/jenkins-cli.jar
     owner: root
     group: root
     mode: "0755"
@@ -16,6 +16,14 @@
   copy:
     content: "{{ jenkins_admin_password }}"
     dest: /opt/jenkins/jenkins-password.txt
+    owner: jenkins
+    group: jenkins
+    mode: "0600"
+
+- name: deploy jenkins-cli shell script
+  template:
+    src: jenkins-cli.j2
+    dest: /bin/jenkins-cli
     owner: root
     group: root
-    mode: "0600"
+    mode: "0755"
