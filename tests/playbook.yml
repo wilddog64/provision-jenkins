@@ -15,7 +15,9 @@
     jenkins_github_org: dreamboxlearning
     jenkins_github_repo: dreamboxlearning/{{ ansible_hostname }}-jenkins-scm
     jenkins_sync_repo_empty: 1
+    jenkins_allow_manage_hosts_file: yes
 
   roles:
+    - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
     - provision-oracle-java
     - provision-jenkins
