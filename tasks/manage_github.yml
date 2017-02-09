@@ -46,9 +46,8 @@
     body_format: json
     body:
       name: "{{ jenkins_github_repo }}"
-      private: true
-      team_id: 1158825  # this is chef-repos
-      description: ansible manage github scm sync repo
+      private: "{{ jenkins_create_private_github_repo }}"
+      description: github scm sync repo
     status_code: 201
   register: repo_create_result
   failed_when: |
