@@ -9,6 +9,7 @@
 
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
+- include: "tasks/config-jenkins-selfsigned-ssl.yml"
 - include: "tasks/settings.yml"
 - include: "tasks/manage_github.yml"
 - include: "tasks/start.jenkins.service.yml"
