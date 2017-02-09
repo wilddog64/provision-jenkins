@@ -17,6 +17,13 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "hashicorp/precise64"
+  if Vagrant.has_plugin?('vagrant-hostmanager')
+	config.hostmanager.enabled      = true
+	config.hostmanager.manage_host  = true
+	config.hostmanager.manage_guest = true
+	config.hostmanager.ignore_private_ip = false
+	config.hostmanager.include_offline = true
+  end
 
   config.vm.provision :ansible do | ansible |
     ansible.limit             = 'all'
