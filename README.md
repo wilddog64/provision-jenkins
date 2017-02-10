@@ -58,6 +58,7 @@ This role will pre-install [SCM Sync configuration jenkins plugin](https://wiki.
 ## Jenkins github management variables
 The `provision-jenkins` role use `scm-sync-configuration` plugin to backup systemwise configuration. In order for this plugin to work effectively, these following variables need to be set
 
+* jenkins_enable_github_repo - a boolean variable that tells `provision-jenkins` should create github repo or not. Default is `false`
 * jenkins_github_org - the orgnization that this repo will be associated with
 * jenkins_github_repo - a repo will be created under the `jenkins_github_org`
 * jenkins_github_api_token - an OAuth token that allow `provision-jenkins` role to manage `repos` in github.com.You will have to first create an account and generate an `api token` that has the following permissions,
