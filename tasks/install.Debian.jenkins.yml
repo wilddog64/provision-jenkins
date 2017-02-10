@@ -6,3 +6,9 @@
   with_items:
     - jenkins
     - git
+    - gcc-4.6
+    - ruby-dev
+    - make
+    - autoconf
+    - automake
+    - rubygems
