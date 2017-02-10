@@ -13,5 +13,6 @@
   when: "{{ jenkins_enable_selfsigned_ssl }}"
 - include: "tasks/settings.yml"
 - include: "tasks/manage_github.yml"
+  when: "{{ jenkins_enable_github_repo }}"
 - include: "tasks/start.jenkins.service.yml"
 - include: "tasks/install-config-jenkins.yml"
