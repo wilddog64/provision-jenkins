@@ -1,0 +1,26 @@
+---
+- name: check if server password key exists
+  stat:
+    path: "{{ jenkins_server_private_key_path }}"
+  register: server_private_key
+
+- name: generate a server password key
+  command: >
+    openssl genrsa -des3 -passout pass:{{ jenkins_server_password }} -out {{ jenkins_server_key_path }} 2048
+  when: "not {{ server_private_key.stat.exists }}"
+
+- name: generate a private key
+  command: openssl rsa -passin pass:{{ jenkins_server_password }} -in {{ jenkins_server_key_path }} -out {{ jenkins_server_private_key_path }}
+  args:
+    creates: "{{ jenkins_server_private_key_path }}"
+
+- name: delete a server password key
+  file:
+    path: "{{ jenkins_server_key_path }}"
+    state: absent
+
+- name: generate a server certificate
+  command: openssl req -new -subj '/CN={{ host_dns_name }}' -key {{ jenkins_server_private_key_path }} -out /tmp/server.csr
+
+- name: create a self-signed SSL certificate from server.key and server.csr
+  command: openssl x509 -req -days {{ jenkins_selfsigned_cert_expired_days }} -in /tmp/server.csr -signkey {{ jenkins_server_private_key_path }} -out /tmp/server.crt
