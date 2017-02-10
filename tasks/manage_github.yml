@@ -15,13 +15,13 @@
   register: sshkey
   changed_when: false
 
+
 - name: upload jenkins ssh public key if it does not exist
-  command: >
-    curl -i -f -H 'Authorization: token {{ jenkins_github_api_token }}' https://api.github.com/user/keys
-      -H 'Content-Type: application/json'
-      -H 'Accept: application/json'
-      -d '{ "title": "{{ jenkins_git_commiter_name }}", "key": "{{ sshkey.stdout }}" }'
-  when: "{{not github_keys | selectattr('title', 'equalto', jenkins_git_commiter_name) | list }}"
+  github_key:
+    name: "{{ jenkins_git_commiter_name }}"
+    token: "{{ jenkins_github_api_token }}"
+    pubkey: "{{ sshkey.stdout }}"
+    state: present
 
 - name: get a list of github repos
   uri:
