@@ -21,8 +21,9 @@
     jenkins_server_private_key_path: /tmp/server.key
     jenkins_selfsigned_cert_expired_days: 365
     jenkins_enable_selfsigned_ssl: yes
-    jenkins_create_private_github_repo: no
+    jenkins_create_private_github_repo: yes
     jenkins_enable_github_repo: no
+    enable_install_pip: no
 
   roles:
     - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
