@@ -22,6 +22,7 @@
     jenkins_selfsigned_cert_expired_days: 365
     jenkins_enable_selfsigned_ssl: yes
     jenkins_create_private_github_repo: no
+    jenkins_enable_github_repo: no
 
   roles:
     - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
