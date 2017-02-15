@@ -4,6 +4,13 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
+- name: configure github tools
+  include_role:
+    name: provision-github-tools
+  vars:
+    hub_version: 2.2.6
+    github_api_token: "{{ vault_jenkins_github_api_token }}"
+
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
 - include: "tasks/config-jenkins-selfsigned-ssl.yml"
