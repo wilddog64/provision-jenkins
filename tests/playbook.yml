@@ -23,6 +23,7 @@
     jenkins_enable_selfsigned_ssl: yes
     jenkins_create_private_github_repo: yes
     jenkins_enable_github_repo: no
+    jenkins_hub_version: 2.2.6
     enable_install_pip: no
 
   roles:

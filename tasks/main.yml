@@ -8,7 +8,7 @@
   include_role:
     name: provision-github-tools
   vars:
-    hub_version: 2.2.6
+    hub_version: "{{ jenkins_hub_version }}"
     github_api_token: "{{ vault_jenkins_github_api_token }}"
 
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
