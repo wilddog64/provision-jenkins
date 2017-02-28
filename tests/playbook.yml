@@ -13,7 +13,7 @@
     jenkins_git_commiter_email: operations@dreambox.com
     jenkins_github_api_token: "{{ vault_jenkins_github_api_token }}"
     jenkins_github_org: dreamboxlearning
-    jenkins_github_repo: dreamboxlearning/{{ ansible_hostname }}-jenkins-scm
+    jenkins_github_repo: wilddog64/{{ ansible_hostname }}-jenkins-scm
     jenkins_sync_repo_empty: 1
     jenkins_allow_manage_hosts_file: yes
     jenkins_server_password: "{{ vault_jenkins_server_password }}"
