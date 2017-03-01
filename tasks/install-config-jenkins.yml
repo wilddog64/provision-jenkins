@@ -27,3 +27,43 @@
     owner: root
     group: root
     mode: "0755"
+
+# this block handle scm-sync-configure repo
+- block:
+  - pip:
+      name: pexpect
+      state: present
+
+  - command: git init
+    args:
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    changed_when: false
+    become_user: jenkins
+
+  - command: git add .
+    args:
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    become_user: jenkins
+    changed_when: false
+
+  - command: git commit -m 'initial jenkins configuration checkin'
+    args:
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    become_user: jenkins
+    changed_when: false
+
+  - expect:
+      command: hub create {{ jenkins_github_repo }}
+      responses:
+        'Are you sure you want to continue connecting \(yes\/no\)?': 'yes'
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    environment:
+      GITHUB_USER: wilddog64
+      GITHUB_TOKEN: "{{ jenkins_github_api_token }}"
+    become_user: jenkins
+    changed_when: false
+
+  - command: git push -u --all origin master
+    args:
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    become_user: jenkins
