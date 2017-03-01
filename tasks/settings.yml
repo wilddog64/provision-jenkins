@@ -49,11 +49,6 @@
   register: install_plugins
   with_items: "{{ jenkins_default_plugins }}"
 
-- name: create sym-config-sync repo
-  command: |
-    git init && git add . && git commit -m 'initial jenkins configuration checkin'
-    git create
-
 # immediately restart jenkins so plugins are loaded
 - name: restart jenkins for plugins to load
   service:
