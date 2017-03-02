@@ -15,6 +15,10 @@
   register: sshkey
   changed_when: false
 
+- name: install pexpect
+  pip:
+    name: pexpect
+    state: present
 
 - name: upload jenkins ssh public key if it does not exist
   github_key:
@@ -22,6 +26,21 @@
     token: "{{ jenkins_github_api_token }}"
     pubkey: "{{ sshkey.stdout }}"
     state: present
+
+- name: copy ssh-add-key script
+  copy:
+    src: ../files/scripts/ssh-add-key.sh
+    dest: /tmp/ssh-add-key.sh
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
+
+- name: add ssh key to ssh agent
+  expect:
+    command: /tmp/ssh-add-key.sh
+    responses:
+      '.*passphrase.*:': "{{ sshkey_passphrase }}"
+  become_user: jenkins
 
 # - name: get a list of github repos
 #   uri:
