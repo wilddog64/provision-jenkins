@@ -34,9 +34,25 @@
       name: pexpect
       state: present
 
-  - command: git init
-    args:
-      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+  - file:
+      path: "{{ jenkins_home }}/.config"
+      state: directory
+      owner: jenkins
+      group: jenkins
+      mode: "0755"
+
+  - template:
+      src: hub.config.j2
+      dest: "{{ jenkins_home }}/.config/hub"
+      owner: jenkins
+      group: jenkins
+      mode: "0644"
+
+  - command: git init "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    changed_when: false
+    become_user: jenkins
+
+  - command: hub config --global hub.protocol https
     changed_when: false
     become_user: jenkins
 
@@ -52,18 +68,17 @@
     become_user: jenkins
     changed_when: false
 
-  - expect:
-      command: hub create {{ jenkins_github_repo }}
-      responses:
-        'Are you sure you want to continue connecting \(yes\/no\)?': 'yes'
+  - command: /usr/local/bin/hub create {{ jenkins_github_repo }}
+    args:
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
-    environment:
-      GITHUB_USER: wilddog64
-      GITHUB_TOKEN: "{{ jenkins_github_api_token }}"
     become_user: jenkins
     changed_when: false
 
-  - command: git push -u --all origin master
-    args:
+  - expect:
+      command: hub push -u --all origin
+      responses:
+        'Username.*:': wilddog64
+        'Password.*:': "{{ jenkins_github_api_token }}"
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    changed_when: false
     become_user: jenkins
