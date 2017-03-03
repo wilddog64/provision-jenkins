@@ -8,6 +8,7 @@
 - name: set github keys fact
   set_fact:
     github_keys: "{{ curl_output.stdout }}"
+    github_sshkey_name: "{{ ansible_hostname }}-{{ jenkins_git_commiter_name }}"
 
 - name: get ssh public key
   command: >
@@ -26,7 +27,7 @@
     token: "{{ jenkins_github_api_token }}"
     pubkey: "{{ sshkey.stdout }}"
     state: present
-  when: "{{ sshkey.stdout not in curl_output.stdout }}"
+  when: "{{ not github_keys | selectattr('title', 'equalto', github_sshkey_name) | list }}"
 
 - name: copy ssh-add-key script
   copy:
