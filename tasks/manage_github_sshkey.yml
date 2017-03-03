@@ -22,7 +22,7 @@
 
 - name: upload jenkins ssh public key if it does not exist
   github_key:
-    name: "{{ jenkins_git_commiter_name }}"
+    name: "{{ ansible_hostname }}-{{ jenkins_git_commiter_name }}"
     token: "{{ jenkins_github_api_token }}"
     pubkey: "{{ sshkey.stdout }}"
     state: present
