@@ -42,34 +42,3 @@
     responses:
       '.*passphrase.*:': "{{ sshkey_passphrase }}"
   become_user: jenkins
-
-# - name: get a list of github repos
-#   uri:
-#     url: https://api.github.com/orgs/{{ jenkins_github_org }}/repos
-#     method: GET
-#     headers:
-#       Authorization: token {{ jenkins_github_api_token }}
-#       Content-Type: application/json
-#     return_content: yes
-#     status_code: 200
-#   register: github_repos
-#   changed_when: false
-
-# - name: create github repo
-#   uri:
-#     url: https://api.github.com/orgs/{{ jenkins_github_org }}/repos
-#     method: POST
-#     headers:
-#       Content-Type: application/json
-#       Accept: application/json
-#       Authorization: token {{ jenkins_github_api_token }}
-#     body_format: json
-#     body:
-#       name: "{{ jenkins_github_repo }}"
-#       private: "{{ jenkins_create_private_github_repo }}"
-#       description: github scm sync repo
-#     status_code: 201
-#   register: repo_create_result
-#   failed_when: |
-#     'FAILED!' in repo_create_result and
-#     'name already exists' not in repo_create_result.json.errors.0.message
