@@ -26,6 +26,7 @@
     token: "{{ jenkins_github_api_token }}"
     pubkey: "{{ sshkey.stdout }}"
     state: present
+  when: "{{ sshkey.stdout not in curl_output.stdout }}"
 
 - name: copy ssh-add-key script
   copy:
