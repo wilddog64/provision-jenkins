@@ -61,12 +61,16 @@
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
     become_user: jenkins
     changed_when: false
+    register: git_add
 
   - command: git commit -m 'initial jenkins configuration checkin'
     args:
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
     become_user: jenkins
     changed_when: false
+    failed_when: |
+      git_add.rc == 1 and
+      git_add.find('nothing to commit') != -1
 
   - command: /usr/local/bin/hub create {{ jenkins_github_repo }}
     args:
