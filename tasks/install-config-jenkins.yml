@@ -77,7 +77,7 @@
   - expect:
       command: hub push -u --all origin
       responses:
-        'Username.*:': wilddog64
+        'Username.*:': "{{ jenkins_git_commiter_name }}"
         'Password.*:': "{{ jenkins_github_api_token }}"
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
     changed_when: false
