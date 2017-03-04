@@ -40,9 +40,9 @@ user.save()
 // search result to see if user jenkins exists
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
     com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
-	jenkins.model.Jenkins.instance,
-	null,
-	null
+    jenkins.model.Jenkins.instance,
+    null,
+    null
 )
 def found_credential = creds.findResult { it.username == "jenkins" ? it : null }
 
@@ -100,7 +100,7 @@ def mock = [
   getParameter: {
     key -> switch(key) {
       case 'gitRepositoryUrl':
-	    return "git@github:{{ jenkins_github_repo }}"
+        return "git@github:{{ jenkins_github_repo }}"
       case 'commitMessagePattern':
         return 'Sync: [message]'
       case 'scm':
