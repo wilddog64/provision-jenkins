@@ -20,3 +20,10 @@
     port: "{{ jenkins_http_port }}"
     state: started
     delay: 15
+
+- name: setup api token file permission
+  file:
+    path: "{{ jenkins_home }}/jbb.txt"
+    owner: jenkins
+    group: jenkins
+    mode: "0600"
