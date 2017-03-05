@@ -41,6 +41,13 @@
     group: jenkins
     mode: "0755"
 
+- name: setup api token file permission
+  file:
+    path: "{{ jenkins_home }}/jbb.txt"
+    owner: jenkins
+    group: jenkins
+    mode: "0600"
+
 - name: install minimum plugins for jenkins
   shell: >
     {{ jenkins_home }}/install_jenkins_plugin.sh {{ item }}
