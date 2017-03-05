@@ -25,6 +25,8 @@
     jenkins_create_private_github_repo: yes
     jenkins_enable_github_repo: yes
     jenkins_hub_version: 2.2.6
+    jenkins_job_builder_email: ckm.liang@gmail.com
+    jenkins_job_builder_password: "{{ vault_jenkins_job_builder_password }}"
     enable_install_pip: yes
 
   roles:
