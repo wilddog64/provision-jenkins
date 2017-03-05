@@ -10,7 +10,10 @@ import com.cloudbees.jenkins.plugins.sshcredentials.impl.*
 import hudson.plugins.sshslaves.*;
 import hudson.model.*
 import jenkins.model.*
-import hudson.security.*
+import jenkins.security.ApiTokenProperty;
+import hudson.util.Secret;
+import hudson.security.*;
+import jenkins.security.*;
 
 def instance = Jenkins.getInstance()
 instance.setNumExecutors(5)
@@ -136,3 +139,43 @@ else {
   scmSyncPlugin.business.synchronizeAllConfigs(ScmSyncConfigurationPlugin.AVAILABLE_STRATEGIES)
   instance.save()
 }
+
+// start create jenkins-job-builder account
+void create_or_update_user(String username, String email, String password, String fullname, String public_keys) {
+   def user = hudson.model.User.get(username)
+   user.setFullName(fullname)
+
+   def email_param = new hudson.tasks.Mailer.UserProperty(email)
+   user.addProperty(email_param)
+
+   def pw_param = hudson.security.HudsonPrivateSecurityRealm.Details.fromPlainPassword(password)
+   user.addProperty(pw_param)
+
+   if ( public_keys != "" ) {
+     def keys_param = new org.jenkinsci.main.modules.cli.auth.ssh.UserPropertyImpl(public_keys)
+     user.addProperty(keys_param)
+   }
+
+   user.save()
+}
+
+create_or_update_user(
+   'jenkins-job-builder',
+   '{{ jenkins_job_builder_email }}',
+   '{{ jenkins_job_builder_password }}',
+   'operational jenkins',
+   ''
+)
+
+strategy.add(Jenkins.READ, 'jenkins-job-builder')
+strategy.add(Item.READ, 'jenkins-job-builder')
+strategy.add(Item.CANCEL, 'jenkins-job-builder')
+strategy.add(Item.BUILD, 'jenkins-job-builder')
+
+User jbb = User.get('jenkins-job-builder')
+ApiTokenProperty jbbApiTokenProperty = jbb.getProperty(ApiTokenProperty.class)
+jenkins.security.ApiTokenProperty.class
+def jbbApiToken = jbbApiTokenProperty.getApiToken()
+def jbbApiTokenFile = new File('{{ jenkins_home }}/jbb.txt')
+println "api token -> ${jbbApiToken}"
+jbbApiTokenFile << "${jbbApiToken}"
