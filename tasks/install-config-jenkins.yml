@@ -56,6 +56,18 @@
     changed_when: false
     become_user: jenkins
 
+  - command: /usr/local/bin/hub create {{ jenkins_github_repo }}
+    args:
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    become_user: jenkins
+    changed_when: false
+
+  - git:
+      repo: ssh://git@github.com:wilddog64/{{ jenkins_github_repo }}
+      dest: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+      accept_hostkey: yes
+      update: no
+
   - command: git add .
     args:
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
@@ -72,17 +84,16 @@
       git_add.rc == 1 and
       git_add.find('nothing to commit') != -1
 
-  - command: /usr/local/bin/hub create {{ jenkins_github_repo }}
-    args:
-      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
-    become_user: jenkins
-    changed_when: false
-
   - expect:
-      command: hub push -u --all origin
+      command: /tmp/ssh-add-key.sh
       responses:
-        'Username.*:': "{{ jenkins_git_commiter_name }}"
-        'Password.*:': "{{ jenkins_github_api_token }}"
+        '.*passphrase.*:': "{{ sshkey_passphrase }}"
+      chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
+    changed_when: false
+    become_user: jenkins
+
+  - command: git push -u --all origin
+    args:
       chdir: "{{ jenkins_home }}/scm-sync-configuration/checkoutConfiguration"
     changed_when: false
     become_user: jenkins
