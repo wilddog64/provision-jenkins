@@ -178,4 +178,7 @@ jenkins.security.ApiTokenProperty.class
 def jbbApiToken = jbbApiTokenProperty.getApiToken()
 def jbbApiTokenFile = new File('{{ jenkins_home }}/jbb.txt')
 println "api token -> ${jbbApiToken}"
-jbbApiTokenFile << "${jbbApiToken}"
+
+if ( ! jbbApiTokenFile.exists() ) {
+    jbbApiTokenFile << "${jbbApiToken}"
+}
