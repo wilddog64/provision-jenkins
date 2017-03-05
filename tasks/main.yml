@@ -18,4 +18,4 @@
 - include: "tasks/settings.yml"
 - include: "tasks/start.jenkins.service.yml"
 - include: "tasks/manage_github_sshkey.yml"
-- include: "tasks/install-config-jenkins.yml"
+- include: "tasks/install-config-jenkins-scm-sync.yml"
