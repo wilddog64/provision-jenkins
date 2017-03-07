@@ -1,2 +1,5 @@
 ---
-
+- name: install jenkins-job-builder tool
+  pip:
+    name: jenkins-job-builder
+    state: present
