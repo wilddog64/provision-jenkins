@@ -48,6 +48,8 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
     null
 )
 def found_credential = creds.findResult { it.username == "jenkins" ? it : null }
+def jenkins_credential_file = new File("{{ jenkins_home }}/jenkins_credential.txt")
+jenkins_credential_file << "${found_credential.id}"
 
 // create a global credential that bases on SSH key. The private key is created and managed by Ansible
 if ( !found_credential ) {
