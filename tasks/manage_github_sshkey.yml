@@ -43,3 +43,4 @@
     responses:
       '.*passphrase.*:': "{{ sshkey_passphrase }}"
   become_user: jenkins
+  changed_when: false
