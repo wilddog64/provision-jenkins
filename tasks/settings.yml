@@ -18,6 +18,7 @@
   command: >
     cat {{ jenkins_init_file }}
   register: init_file_content
+  changed_when: false
 
 - name: create supress jenkins setup wizard java option
   set_fact:
@@ -76,7 +77,6 @@
     src: basic-security.groovy.j2
     dest: "{{ jenkins_home }}/init.groovy.d/basic-security.groovy"
   register: jenkins_init_config
-  when: jenkins_init_directory_created.changed
 
 - name: manage jenkins ssh keys
   user:
