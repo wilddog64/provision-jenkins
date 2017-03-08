@@ -3,3 +3,29 @@
   pip:
     name: jenkins-job-builder
     state: present
+
+- name: ensure .config directory exists in the jenkins home directory
+  file:
+    path: "{{ jenkins_home }}/.config"
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: "0755"
+
+- name: get jenkins-job-builder account api token
+  command: cat {{ jenkins_home }}/jbb.txt
+  register: jbb_token
+  changed_when: false
+
+- name: create a jenkins job builder api token fact
+  set_fact:
+    jenkins_api_token: "{{ jbb_token.stdout }}"
+  changed_when: false
+
+- name: generate jenkins job builder configuration file
+  template:
+    src: jenkins_jobs.j2
+    dest: "{{ jenkins_home }}/.config/jenkins_jobs.ini"
+    owner: jenkins
+    group: jenkins
+    mode: "0600"

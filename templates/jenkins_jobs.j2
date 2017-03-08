@@ -1,0 +1,13 @@
+[job_builder]
+allow_duplicates=True
+ignore_cache=True
+keep_descriptions=False
+include_path=.:scripts:~/git/:./inc
+recursive=True
+exclude=.*:manual:./development
+# allow_duplicates=False
+
+[jenkins]
+user=jenkins-job-builder
+password={{ jenkins_api_token }}
+url=http://localhost:8080
