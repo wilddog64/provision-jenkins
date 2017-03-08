@@ -21,6 +21,8 @@
 
 - name: generate a server certificate
   command: openssl req -new -subj '/CN={{ host_dns_name }}' -key {{ jenkins_server_private_key_path }} -out /tmp/server.csr
+  changed_when: false
 
 - name: create a self-signed SSL certificate from server.key and server.csr
   command: openssl x509 -req -days {{ jenkins_selfsigned_cert_expired_days }} -in /tmp/server.csr -signkey {{ jenkins_server_private_key_path }} -out /tmp/server.crt
+  changed_when: false
