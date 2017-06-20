@@ -24,6 +24,11 @@ provisioner:
 platforms:
   - name: hashicorp/precise64
   - name: centos/7
+    driver_config:
+        network:
+          - forwarded_port:
+              guest: 8080
+              host: 8081
 
 suites:
   - name: default
