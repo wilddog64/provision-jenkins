@@ -10,6 +10,7 @@
   vars:
     hub_version: "{{ jenkins_hub_version }}"
     github_api_token: "{{ vault_jenkins_github_api_token }}"
+  when: "{{ jenkins_install_github_tools }}"
 
 - include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
 - include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
@@ -17,6 +18,6 @@
   when: "{{ jenkins_enable_selfsigned_ssl }}"
 - include: "tasks/settings.yml"
 - include: "tasks/start.jenkins.service.yml"
-- include: "tasks/manage_github_sshkey.yml"
-- include: "tasks/install-config-jenkins-scm-sync.yml"
+# - include: "tasks/manage_github_sshkey.yml"
+# - include: "tasks/install-config-jenkins-scm-sync.yml"
 - include: "tasks/setup-jenkins-job-builder.yml"
