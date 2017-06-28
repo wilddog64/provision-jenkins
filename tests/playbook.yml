@@ -32,23 +32,23 @@
     jenkins_install_github_tools: no
     enable_install_pip: yes
     jenkins_default_plugins:
-      - ssh-credentials
-      - icon-shim
+      - build-token-root
       - github
-      - scm-sync-configuration
+      - greenballs
+      - icon-shim
       - jobConfigHistory
       - matrix-auth
-      - build-token-root
-      - ssh-agent
-      - throttle-concurrents
-      - throttle-concurrent-builds-plugin
       - nodelabelparameter
-      - workflow-aggregator
-      - workflow-job
-      - workflow-cps
-      - workflow-multibranch
-      - greenballs
       - publish-over-ssh
+      - scm-sync-configuration
+      - ssh-agent
+      - ssh-credentials
+      - throttle-concurrent-builds-plugin
+      - throttle-concurrents
+      - workflow-aggregator
+      - workflow-cps
+      - workflow-job
+      - workflow-multibranch
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
