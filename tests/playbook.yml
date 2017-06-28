@@ -11,8 +11,8 @@
     oracle_java_version_build: 11
     sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
     jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
-    jenkins_git_commiter_name: wilddog64
-    jenkins_git_commiter_email: ckm.liang@gmail.com
+    jenkins_git_commiter_name: Learn Internal Deploy
+    jenkins_git_commiter_email: intdeploy@support.pd.local
     jenkins_github_user: wilddog64
     jenkins_github_api_token: "{{ vault_jenkins_github_api_token }}"
     jenkins_github_org: dreamboxlearning
@@ -47,6 +47,7 @@
       - workflow-job
       - workflow-cps
       - workflow-multibranch
+      - greenballs
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
