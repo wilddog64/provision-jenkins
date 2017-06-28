@@ -48,6 +48,7 @@
       - workflow-cps
       - workflow-multibranch
       - greenballs
+      - publish-over-ssh
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
