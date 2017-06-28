@@ -31,6 +31,22 @@
     jenkins_job_builder_password: "{{ vault_jenkins_job_builder_password }}"
     jenkins_install_github_tools: no
     enable_install_pip: yes
+    jenkins_default_plugins:
+      - ssh-credentials
+      - icon-shim
+      - github
+      - scm-sync-configuration
+      - jobConfigHistory
+      - matrix-auth
+      - build-token-root
+      - ssh-agent
+      - throttle-concurrents
+      - throttle-concurrent-builds-plugin
+      - nodelabelparameter
+      - workflow-aggregator
+      - workflow-job
+      - workflow-cps
+      - workflow-multibranch
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
