@@ -23,16 +23,17 @@
     jenkins_server_key_path: /tmp/server.passwd.key
     jenkins_server_private_key_path: /tmp/server.key
     jenkins_selfsigned_cert_expired_days: 365
-    jenkins_enable_selfsigned_ssl: yes
+    jenkins_enable_selfsigned_ssl: no
     jenkins_create_private_github_repo: yes
     jenkins_enable_github_repo: yes
     jenkins_hub_version: 2.2.6
-    jenkins_job_builder_email: ckm.liang@gmail.com
+    jenkins_job_builder_email: chengkai.liang@blackboard.com
     jenkins_job_builder_password: "{{ vault_jenkins_job_builder_password }}"
+    jenkins_install_github_tools: no
     enable_install_pip: yes
 
   roles:
-    - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
+    # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
     - install-python-pip
     - provision-oracle-java
     - provision-jenkins
