@@ -33,6 +33,7 @@
     enable_install_pip: yes
     jenkins_default_plugins:
       - build-token-root
+      - envinject
       - github
       - greenballs
       - icon-shim
@@ -43,6 +44,7 @@
       - scm-sync-configuration
       - ssh-agent
       - ssh-credentials
+      - ssh-slaves
       - throttle-concurrent-builds-plugin
       - throttle-concurrents
       - workflow-aggregator
