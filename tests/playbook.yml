@@ -33,6 +33,7 @@
     enable_install_pip: yes
     jenkins_default_plugins:
       - build-token-root
+      - credentials
       - envinject
       - github
       - greenballs
