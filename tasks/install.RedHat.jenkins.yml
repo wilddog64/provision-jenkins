@@ -1,10 +1,19 @@
 ---
+- name: get jenkins package
+  get_url:
+    url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
+    dest: /tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm
+
+- name: install jenkins
+  yum:
+    name: "/tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
+    state: present
+
 - name: install jenkins
   package:
     name: "{{ item }}"
     state: installed
   with_items:
-    - jenkins
     - git
     - gcc-c++
     - ruby-devel
