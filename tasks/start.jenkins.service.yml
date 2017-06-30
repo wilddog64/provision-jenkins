@@ -19,7 +19,7 @@
     host: "{{ jenkins_hostname }}"
     port: "{{ jenkins_http_port }}"
     state: started
-    delay: 15
+    delay: 60
 
 - name: setup api token file permission
   file:
