@@ -21,3 +21,6 @@
     - autoconf
     - automake
     - rubygems
+
+- name: enable firewalld
+  service: name=firewalld state=started enabled=yes
