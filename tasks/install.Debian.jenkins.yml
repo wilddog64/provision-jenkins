@@ -12,3 +12,6 @@
     - autoconf
     - automake
     - rubygems
+
+- name: enable ufw
+  ufw: state=enabled policy=allow
