@@ -8,12 +8,3 @@ jenkins_admin_user: admin
 jenkins_home: /var/lib/jenkins
 jenkins_jar_location: /opt/jenkins-cli.jar
 jenkins_update_center_json_url: https://updates.jenkins-ci.org/update-center.json
-jenkins_default_plugins:
-  - ssh-credentials
-  - icon-shim
-  - github
-  - scm-sync-configuration
-  - jobConfigHistory
-  - matrix-auth
-  - build-token-root
-  - ssh-agent
