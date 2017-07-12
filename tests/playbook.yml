@@ -52,6 +52,7 @@
       - workflow-cps
       - workflow-job
       - workflow-multibranch
+    yum_epel_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
