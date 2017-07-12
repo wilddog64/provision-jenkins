@@ -23,7 +23,7 @@
     - rubygems
 
 - name: enable firewalld
-  service:
+  firewalld:
     port: 8080/tcp
     permanent: true
     state: enabled
