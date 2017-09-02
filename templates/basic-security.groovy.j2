@@ -11,7 +11,7 @@ import hudson.plugins.sshslaves.*;
 import hudson.model.*
 import jenkins.model.*
 import jenkins.security.ApiTokenProperty;
-import hudson.util.Secret;
+// import hudson.util.Secret;
 import hudson.security.*;
 import jenkins.security.*;
 
@@ -34,13 +34,15 @@ if (!instance.isUseSecurity()) {
 
 // update user password
 user = hudson.model.User.get("admin")
-user.setFullName("dreambox admin")
+user.setFullName("admin")
 password = hudson.security.HudsonPrivateSecurityRealm.Details.fromPlainPassword("{{ jenkins_admin_password }}")
 user.addProperty(password)
 user.save()
 
 // load a list of credentials from jenkins and
 // search result to see if user jenkins exists
+// create a global credential that bases on SSH key. The private key is created and managed by Ansible
+
 def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
     com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
     jenkins.model.Jenkins.instance,
@@ -48,23 +50,24 @@ def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredenti
     null
 )
 def found_credential = creds.findResult { it.username == "jenkins" ? it : null }
-def jenkins_credential_file = new File("{{ jenkins_home }}/jenkins_credential.txt")
-jenkins_credential_file << "${found_credential.id}"
 
-// create a global credential that bases on SSH key. The private key is created and managed by Ansible
+String keyfile = "{{ jenkins_sshkey_file }}"
+global_domain = Domain.global()
+credential_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
+
 if ( !found_credential ) {
-   String keyfile = "{{ jenkins_sshkey_file }}"
-   global_domain = Domain.global()
-   credential_store = Jenkins.instance.getExtensionList('com.cloudbees.plugins.credentials.SystemCredentialsProvider')[0].getStore()
-   credential = new BasicSSHUserPrivateKey(
-       CredentialsScope.GLOBAL,
-       null,
-       "jenkins",
-       new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(keyfile),
-       "{{ sshkey_passphrase }}",
-       "Ansible Managed SSH credential"
-   )
-   credential_store.addCredentials(global_domain, credential)
+	credential = new BasicSSHUserPrivateKey(
+			CredentialsScope.GLOBAL,
+			null,
+			"jenkins",
+			new BasicSSHUserPrivateKey.FileOnMasterPrivateKeySource(keyfile),
+			"{{ sshkey_passphrase }}",
+			"Ansible Managed SSH credential")
+		credential_store.addCredentials(global_domain, credential)
+}
+else {
+    def jenkins_credential_file = new File("{{ jenkins_home }}/jenkins_credential.txt")
+    jenkins_credential_file << "${found_credential.id}"
 }
 
 // configure git commiter information

@@ -1,14 +1,26 @@
 ---
+- name: get a jenkins package
+  get_url:
+    url: "{{ jenkins_pkg_url }}/binary/jenkins_{{jenkins_pkg_version}}_all.deb"
+    dest: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
+
+- name: install jenkins
+  apt:
+    deb: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
+    state: present
+
 - name: install jenkins
   apt:
     pkg: "{{ item }}"
     state: installed
   with_items:
-    - jenkins
     - git
-    - gcc-4.6
+    - gcc-4.7
     - ruby-dev
     - make
     - autoconf
     - automake
     - rubygems
+
+- name: enable ufw
+  ufw: state=enabled policy=allow

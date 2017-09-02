@@ -1,0 +1,7 @@
+[test-jenkins]
+test-jenkins-1.int.bbpd.io
+test-jenkins-2.int.bbpd.io
+
+[test-jenkins:vars]
+ansible_user=root
+ansible_connection=smart

@@ -7,10 +7,12 @@
 
   vars:
     oracle_java_version: 8
+    oracle_java_version_update: 131
+    oracle_java_version_build: 11
     sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
     jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
-    jenkins_git_commiter_name: wilddog64
-    jenkins_git_commiter_email: ckm.liang@gmail.com
+    jenkins_git_commiter_name: Learn Internal Deploy
+    jenkins_git_commiter_email: intdeploy@support.pd.local
     jenkins_github_user: wilddog64
     jenkins_github_api_token: "{{ vault_jenkins_github_api_token }}"
     jenkins_github_org: dreamboxlearning
@@ -21,16 +23,38 @@
     jenkins_server_key_path: /tmp/server.passwd.key
     jenkins_server_private_key_path: /tmp/server.key
     jenkins_selfsigned_cert_expired_days: 365
-    jenkins_enable_selfsigned_ssl: yes
+    jenkins_enable_selfsigned_ssl: no
     jenkins_create_private_github_repo: yes
     jenkins_enable_github_repo: yes
     jenkins_hub_version: 2.2.6
-    jenkins_job_builder_email: ckm.liang@gmail.com
+    jenkins_job_builder_email: chengkai.liang@blackboard.com
     jenkins_job_builder_password: "{{ vault_jenkins_job_builder_password }}"
+    jenkins_install_github_tools: no
     enable_install_pip: yes
+    jenkins_default_plugins:
+      - build-token-root
+      - credentials
+      - envinject
+      - github
+      - greenballs
+      - icon-shim
+      - jobConfigHistory
+      - matrix-auth
+      - nodelabelparameter
+      - publish-over-ssh
+      - scm-sync-configuration
+      - ssh-agent
+      - ssh-credentials
+      - ssh-slaves
+      - throttle-concurrent-builds-plugin
+      - throttle-concurrents
+      - workflow-aggregator
+      - workflow-cps
+      - workflow-job
+      - workflow-multibranch
 
   roles:
-    - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
+    # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
     - install-python-pip
     - provision-oracle-java
     - provision-jenkins

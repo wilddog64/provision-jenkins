@@ -7,7 +7,7 @@
 - name: generate a server password key
   command: >
     openssl genrsa -des3 -passout pass:{{ jenkins_server_password }} -out {{ jenkins_server_key_path }} 2048
-  when: "{{ not server_private_key.stat.exists }}"
+  when: not server_private_key.stat.exists
 
 - name: generate a private key
   command: openssl rsa -passin pass:{{ jenkins_server_password }} -in {{ jenkins_server_key_path }} -out {{ jenkins_server_private_key_path }}
