@@ -21,6 +21,7 @@
     - autoconf
     - automake
     - rubygems
+    - nmap-ncat
 
 - name: enable firewalld
   service: name=firewalld state=started enabled=yes
