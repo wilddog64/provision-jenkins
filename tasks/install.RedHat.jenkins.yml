@@ -24,6 +24,7 @@
     - nmap-ncat
 
 - name: enable firewalld
+<<<<<<< HEAD
   service: name=firewalld state=started enabled=yes
 
 - name: allow port {{ jenkins_http_port }} traffice

@@ -23,4 +23,7 @@
     - rubygems
 
 - name: enable ufw
-  ufw: state=enabled policy=allow
+  ufw:
+    state: enabled
+    port: 8080
+    policy: allow
