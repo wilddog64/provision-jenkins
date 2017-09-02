@@ -29,5 +29,5 @@
 - name: allow port {{ jenkins_http_port }} traffice
   firewalld:
     port: "{{ jenkins_http_port }}/tcp"
-    permanet: true
+    permanent: true
     state: enabled
