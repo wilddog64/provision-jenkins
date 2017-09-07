@@ -9,7 +9,7 @@
     name: "/tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
     state: present
 
-- name: install jenkins
+- name: install packages
   package:
     name: "{{ item }}"
     state: installed
