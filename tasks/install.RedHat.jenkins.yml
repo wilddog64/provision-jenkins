@@ -4,7 +4,7 @@
     url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
     dest: /tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm
 
-- name: install jenkins
+- name: install jenkins {{ jenkins_pkg_version }}
   yum:
     name: "/tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
     state: present
