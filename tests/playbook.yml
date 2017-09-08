@@ -46,8 +46,7 @@
       - ssh-agent
       - ssh-credentials
       - ssh-slaves
-      - throttle-concurrent-builds-plugin
-      - throttle-concurrents
+#     - throttle-concurrents
       - workflow-aggregator
       - workflow-cps
       - workflow-job
