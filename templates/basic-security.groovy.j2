@@ -22,8 +22,6 @@ import jenkins.model.Jenkins
 
 def instance = Jenkins.getInstance()
 instance.setNumExecutors(5)
-instance.setSlaveAgentPort([55000])
-
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
 
