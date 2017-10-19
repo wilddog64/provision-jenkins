@@ -9,7 +9,7 @@
     deb: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
     state: present
 
-- name: install jenkins
+- name: install jenkins {{ jenkins_pkg_version }}
   apt:
     pkg: "{{ item }}"
     state: installed
@@ -23,4 +23,7 @@
     - rubygems
 
 - name: enable ufw
-  ufw: state=enabled policy=allow
+  ufw:
+    state: enabled
+    port: 8080
+    policy: allow

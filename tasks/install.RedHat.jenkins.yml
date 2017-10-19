@@ -1,15 +1,29 @@
 ---
 - name: get jenkins package
   get_url:
-    url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
-    dest: /tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm
+    url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm"
+    dest: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
 
-- name: install jenkins
-  yum:
-    name: "/tmp/jenkins-{{ jenkins_pkg_version }}.noarch.rpm"
-    state: present
+- block: # to handle jenkins upgrade and downgrade
+  - name: install jenkins {{ jenkins_pkg_version }}
+    yum:
+      name: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
+      state: present
+    register: package_state
 
-- name: install jenkins
+  rescue:
+  - name: remove previous installed jenkins
+    yum:
+      name: jenkins
+      state: absent
+    when: "'Nothing to do' in package_state.msg"
+
+  - name: now install different version of jenkins
+    yum:
+      name: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
+      state: present
+
+- name: install packages
   package:
     name: "{{ item }}"
     state: installed

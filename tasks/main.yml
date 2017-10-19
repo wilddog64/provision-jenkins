@@ -4,20 +4,20 @@
 
 - include_vars: "{{ ansible_os_family }}.yml"
 
-- name: configure github tools
-  include_role:
-    name: provision-github-tools
-  vars:
-    hub_version: "{{ jenkins_hub_version }}"
-    github_api_token: "{{ vault_jenkins_github_api_token }}"
-  when: jenkins_install_github_tools
+# - name: configure github tools
+#   include_role:
+#     name: provision-github-tools
+#   vars:
+#     hub_version: "{{ jenkins_hub_version }}"
+#     github_api_token: "{{ vault_jenkins_github_api_token }}"
+#   when: jenkins_install_github_tools
 
-- include: "tasks/setup.{{ ansible_os_family }}.repo.yml"
-- include: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
-- include: "tasks/config-jenkins-selfsigned-ssl.yml"
+- include_tasks: "tasks/setup.{{ ansible_os_family }}.repo.yml"
+- include_tasks: "tasks/install.{{ ansible_os_family }}.jenkins.yml"
+- include_tasks: "tasks/config-jenkins-selfsigned-ssl.yml"
   when: jenkins_enable_selfsigned_ssl
-- include: "tasks/settings.yml"
-- include: "tasks/start.jenkins.service.yml"
+- include_tasks: "tasks/settings.yml"
+- include_tasks: "tasks/start.jenkins.service.yml"
 # - include: "tasks/manage_github_sshkey.yml"
 # - include: "tasks/install-config-jenkins-scm-sync.yml"
-- include: "tasks/setup-jenkins-job-builder.yml"
+- include_tasks: "tasks/setup-jenkins-job-builder.yml"
