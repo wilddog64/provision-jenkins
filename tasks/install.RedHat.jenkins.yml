@@ -4,28 +4,24 @@
     url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm"
     dest: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
 
-- name: get current installed jenkins on the system
-  shell: >
-    rpm -qa jenkins
-  ignore_errors: yes
-  register: current_jenkins
+- block: # to handle jenkins upgrade and downgrade
+  - name: install jenkins {{ jenkins_pkg_version }}
+    yum:
+      name: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
+      state: present
+    register: package_state
 
-- name: get jenkins version from an installed package
-  shell: echo {{ current_jenkins.stdout }} | perl -nle 'print $1 if /-(.*)-/'
-  ignore_errors: yes
-  register: jenkins_version
+  rescue:
+  - name: remove previous installed jenkins
+    yum:
+      name: jenkins
+      state: absent
+    when: "'Nothing to do' in package_state.msg"
 
-- name: uninstall current jekins
-  yum:
-    name: "{{ current_jenkins.stdout }}"
-    state: absent
-  when: |
-    jenkins_pkg_version | version_compare(jenkins_version.stdout, '<')
-
-- name: install jenkins
-  yum:
-    name: "/tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm"
-    state: present
+  - name: now install different version of jenkins
+    yum:
+      name: /tmp/jenkins-{{ jenkins_pkg_version }}-1.1.noarch.rpm
+      state: present
 
 - name: install packages
   package:
