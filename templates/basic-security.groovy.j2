@@ -21,7 +21,7 @@ import hudson.security.csrf.DefaultCrumbIssuer
 import jenkins.model.Jenkins
 
 def instance = Jenkins.getInstance()
-instance.setNumExecutors(5)
+instance.setNumExecutors(2)  // we only need 2 executors on master
 instance.setCrumbIssuer(new DefaultCrumbIssuer(true))
 instance.save()
 
