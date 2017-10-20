@@ -54,6 +54,28 @@ This role will pre-install [SCM Sync configuration jenkins plugin](https://wiki.
 	* scm-sync-configuraion - a plugin backup jenkins configuration and sync with github
 	* matrix-auth - a plugin this role uses to configure system security
 	* build-token-root - a plugin that allow remote job execution
+    * credentials - a credetial store
+    * envinject - an environment variables inject plugin
+    * github - a github plugin
+    * greenballs
+    * icon-shim
+    * jobConfigHistory
+    * matrix-auth
+    * nodelabelparameter
+    * publish-over-ssh
+    * scm-sync-configuration
+    * ssh-agent
+    * ssh-credentials
+    * ssh-slaves
+    * workflow-aggregator
+    * workflow-cps
+    * workflow-job
+    * workflow-multibranch
+    * mesos
+    * dashboard-view
+    * matrixtieparent
+    * excludeMatrixParent
+    * configurationslicing
 
 ## Jenkins github management variables
 The `provision-jenkins` role use `scm-sync-configuration` plugin to backup systemwise configuration. In order for this plugin to work effectively, these following variables need to be set
