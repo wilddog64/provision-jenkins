@@ -3,6 +3,7 @@ This role will download, configure, and start jenkins service. The role supports
 two OS families, `RedHat` and `Debian`
 
 # Requirements
+To run test in Vagrant, you have to edit ```/etc/hosts``` file and set 127.0.0.1 to localhost.pd.local
 
 # Role Variables
 The variables in this role has two categories.
