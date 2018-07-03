@@ -32,31 +32,64 @@
     jenkins_install_github_tools: no
     enable_install_pip: yes
     jenkins_default_plugins:
+      - apache-httpcomponents-client-4-api
+      - blueocean
+      - blueocean-bitbucket-pipeline
+      - blueocean-commons
+      - blueocean-config
+      - blueocean-core-js
+      - blueocean-events
+      - blueocean-git-pipeline
+      - blueocean-jira
+      - blueocean-jwt
+      - blueocean-personalization
+      - blueocean-pipeline-editor
+      - blueocean-pipeline-scm-api
+      - blueocean-rest
+      - blueocean-rest-impl
+      - blueocean-web
+      - bouncycastle-api
       - build-token-root
+      - cloudbees-folder
+      - configurationslicing
       - credentials
+      - dashboard-view
       - envinject
+      - excludeMatrixParent
+      - favorite
       - github
+      - github-branch-source
       - greenballs
       - icon-shim
+      - jenkins-design-language
+      - job-import-plugin
       - jobConfigHistory
       - matrix-auth
+      - matrixtieparent
+      - mercurial
+      - metrics
       - nodelabelparameter
+      - pipeline-maven
+      - pipeline-model-api
+      - pipeline-model-definition
+      - pipeline-model-extensions
+      - pipeline-stage-tags-metadata
       - publish-over-ssh
-      - scm-sync-configuration
+      - resource-disposer
+      - role-strategy
       - ssh-agent
       - ssh-credentials
       - ssh-slaves
-#     - throttle-concurrents
+      - subversion
+      - urltrigger
       - workflow-aggregator
       - workflow-cps
       - workflow-job
       - workflow-multibranch
-      - dashboard-view
-      - matrixtieparent
-      - excludeMatrixParent
-      - configurationslicing
-      - blueocean
-    yum_epel_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
+      - workflow-support
+#     - throttle-concurrents
+    yum_epel_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
+    local_domain: wsgc.com
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
