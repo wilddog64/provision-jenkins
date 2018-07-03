@@ -16,16 +16,9 @@
 
 - name: Wait for Jenkins to start up before proceeding.
   wait_for:
-    host: "{{ ansible_hostname }}.pd.local"
+    host: "localhost.{{ local_domain }}"
     port: "{{ jenkins_http_port }}"
     state: started
     delay: 60
   delegate_to: 127.0.0.1
   become: no
-
-- name: setup api token file permission
-  file:
-    path: "{{ jenkins_home }}/jbb.txt"
-    owner: jenkins
-    group: jenkins
-    mode: "0600"
