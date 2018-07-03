@@ -16,7 +16,7 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "centos/7"
+  config.vm.box = "bento/ubuntu-16.04"
   config.vm.provision :ansible do | ansible |
     ansible.limit             = 'all'
     ansible.galaxy_roles_path = '..'
@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     ansible.playbook   = 'tests/playbook.yml'
     ansible.vault_password_file = 'secrets/my_pass.txt'
     ansible.extra_vars = {
-      jenkins_pkg_version: '2.85',
+      # jenkins_pkg_version: '2.130',
     }
   end
 end
