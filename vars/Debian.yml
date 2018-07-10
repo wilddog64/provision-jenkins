@@ -2,5 +2,5 @@
 jenkins_repo_key_url: http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key
 jenkins_repo_url: deb http://pkg.jenkins-ci.org/debian binary/
 jenkins_pkg_url: http://pkg.jenkins-ci.org/debian
-jenkins_pkg_version: 2.9
+jenkins_pkg_version: 2.130
 jenkins_init_file: /etc/default/jenkins
