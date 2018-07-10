@@ -26,7 +26,7 @@ platforms:
   - name: centos/7
     driver_config:
       network:
-         - ["forwarded_port", {guest: 8080, host: 8081}]
+         - ["forwarded_port", {guest: 8080, host: 8082}]
 
 suites:
   - name: default
