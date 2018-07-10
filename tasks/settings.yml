@@ -92,3 +92,18 @@
   file:
     path: /opt/jenkins
     state: directory
+
+- name: get jenkins user home directory
+  user:
+    name: jenkins
+    state: present
+  register: jenkins_user
+
+- name: copy jenkins-sshkey
+  copy:
+    src: files/id_rsa.jenkins
+    dest: "{{ jenkins_user.home }}/.ssh/id_rsa_jenkins"
+    group: jenkins
+    owner: jenkins
+    mode: 0600
+  changed_when: false
