@@ -35,16 +35,7 @@
       - async-http-client
       - blueocean
       - blueocean-bitbucket-pipeline
-#     - blueocean-events
       - blueocean-git-pipeline
-#     - blueocean-jira
-#     - blueocean-jwt
-#     - blueocean-personalization
-#     - blueocean-pipeline-editor
-#     - blueocean-pipeline-scm-api
-#     - blueocean-rest
-#     - blueocean-rest-impl
-#     - blueocean-web
       - build-pipeline-plugin
       - bouncycastle-api
       - build-token-root
@@ -69,10 +60,6 @@
       - nodelabelparameter
       - pipeline-maven
       - pipeline-multibranch-defaults
-#     - pipeline-model-api
-#     - pipeline-model-definition
-#     - pipeline-model-extensions
-#     - pipeline-stage-tags-metadata
       - publish-over-ssh
       - resource-disposer
       - role-strategy
@@ -86,7 +73,6 @@
       - workflow-job
       - workflow-multibranch
       - workflow-support
-#     - throttle-concurrents
     yum_epel_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
     local_domain: wsgc.com
 
