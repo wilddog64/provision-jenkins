@@ -67,6 +67,7 @@
       - ssh-credentials
       - ssh-slaves
       - subversion
+      - travis-yml
       - urltrigger
       - workflow-aggregator
       - workflow-cps
