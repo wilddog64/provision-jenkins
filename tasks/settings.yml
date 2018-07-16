@@ -107,3 +107,14 @@
     owner: jenkins
     mode: 0600
   changed_when: false
+
+- name: deploy jenkins pipeline share library
+  copy:
+    src:  "{{ item }}"
+    dest: "{{ jenkins_user.home }}/"
+    group: jenkins
+    owner: jenkins
+    local_follow: False
+  with_items:
+    - pipeline-commons
+    - job-dsl
