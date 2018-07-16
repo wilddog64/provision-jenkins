@@ -1,0 +1,6 @@
+[submodule "pipeline-commons"]
+	path = pipeline-commons
+	url = git@github.wsgc.com:eCommerce-DevOps/pipeline-commons.git
+[submodule "job-dsl"]
+	path = job-dsl
+	url = https://chengkai@bitbucket.org/wildwildwest64/jenkins-job-dsl-template.git
