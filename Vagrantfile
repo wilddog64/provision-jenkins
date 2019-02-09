@@ -18,13 +18,13 @@ Vagrant.configure("2") do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "bento/ubuntu-16.04"
   config.vm.provision :ansible do | ansible |
-    ansible.limit             = 'all'
-    ansible.galaxy_roles_path = '..'
+    ansible.limit               = 'all'
+    ansible.galaxy_roles_path   = '..'
     # ansible.install_mode      = :pip
-    ansible.verbose           = 'vv'
-    ansible.playbook   = 'tests/playbook.yml'
+    ansible.verbose             = 'vv'
+    ansible.playbook            = 'tests/playbook.yml'
     ansible.vault_password_file = 'secrets/my_pass.txt'
-    ansible.extra_vars = {
+    ansible.extra_vars          = {
       # jenkins_pkg_version: '2.130',
     }
   end
