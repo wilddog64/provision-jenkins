@@ -79,6 +79,6 @@
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
-    - install-python-pip
+    # - install-python-pip
     - provision-oracle-java
     - provision-jenkins
