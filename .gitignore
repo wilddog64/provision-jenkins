@@ -34,3 +34,4 @@ dreambox/etc/users
 tmp/
 *.retry
 secrets/
+*.log
