@@ -35,3 +35,4 @@ tmp/
 *.retry
 secrets/
 *.log
+.direnv
