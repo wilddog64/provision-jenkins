@@ -24,18 +24,17 @@
       state: present
 
 - name: install packages
-  package:
-    name: "{{ item }}"
-    state: installed
-  with_items:
-    - git
-    - gcc-c++
-    - ruby-devel
-    - make
-    - autoconf
-    - automake
-    - rubygems
-    - nmap-ncat
+  yum:
+    pkg:
+      - git
+      - gcc-c++
+      - ruby-devel
+      - make
+      - autoconf
+      - automake
+      - rubygems
+      - nmap-ncat
+    state: present
 
 - name: enable firewalld
   service: name=firewalld state=started enabled=yes
