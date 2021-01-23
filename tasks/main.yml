@@ -22,4 +22,4 @@
 - include_tasks: "tasks/start.jenkins.service.yml"
 # - include: "tasks/manage_github_sshkey.yml"
 # - include: "tasks/install-config-jenkins-scm-sync.yml"
-- include_tasks: "tasks/setup-jenkins-job-builder.yml"
+# - include_tasks: "tasks/setup-jenkins-job-builder.yml"
