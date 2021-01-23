@@ -75,7 +75,7 @@
       - workflow-multibranch
       - workflow-support
     yum_epel_repo: http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/e/epel-release-7-11.noarch.rpm
-    local_domain: wsgc.com
+    local_domain: cisco.com
 
   roles:
     # - { role: manage-hosts-file, when: "jenkins_allow_manage_hosts_file" }
