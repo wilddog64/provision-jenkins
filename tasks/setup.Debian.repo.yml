@@ -4,6 +4,12 @@
     url: "{{ jenkins_repo_key_url }}"
     state: present
 
+- name: manage apt repo keys
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: "{{ item }}"
+  with_items: "{{ apt_keys }}"
+
 - name: create apt repo
   apt_repository:
     repo: "{{ jenkins_repo_url }}"
