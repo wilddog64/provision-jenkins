@@ -23,7 +23,7 @@ Vagrant.configure("2") do |config|
     # ansible.install_mode      = :pip
     ansible.verbose             = 'vv'
     ansible.playbook            = 'tests/playbook.yml'
-	ansible.vault_password_file = 'secrets/my_pass.txt'
+	  ansible.vault_password_file = 'secrets/my_pass.txt'
     ansible.extra_vars          = {
         'ansible_python_interpreter' => '/usr/bin/python3'
     }
