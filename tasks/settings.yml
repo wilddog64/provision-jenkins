@@ -116,5 +116,4 @@
     owner: jenkins
     local_follow: False
   with_items:
-    - pipeline-commons
     - job-dsl
