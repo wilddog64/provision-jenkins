@@ -11,6 +11,7 @@
     - 684A14CF2582E0C5
     - FCEF32E745F2C3D5
 
+    jenkins_pkg_version: 2.289.2
     oracle_java_version: 8
     oracle_java_version_update: 131
     oracle_java_version_build: 11
