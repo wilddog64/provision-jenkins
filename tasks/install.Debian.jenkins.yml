@@ -1,24 +1,25 @@
 ---
-- name: get a jenkins package
-  get_url:
-    url: "{{ jenkins_pkg_url }}/binary/jenkins_{{jenkins_pkg_version}}_all.deb"
-    dest: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
-
-- name: install jenkins
-  apt:
-    deb: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
-    state: present
-
-- name: install jenkins {{ jenkins_pkg_version }}
+- name: install jenkins package dependencies
   apt:
     pkg:
       - git
-      - gcc-10
+      - gcc
       - ruby-dev
       - make
       - autoconf
       - automake
       - rubygems
+      - openjdk-8-jdk
+    state: present
+
+- name: get jenkins package {{ jenkins_pkg_version }}
+  get_url:
+    url: "{{ jenkins_pkg_url }}/binary/jenkins_{{jenkins_pkg_version}}_all.deb"
+    dest: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
+
+- name: install jenkins {{ jenkins_pkg_version }}
+  apt:
+    deb: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
     state: present
 
 - name: enable ufw
