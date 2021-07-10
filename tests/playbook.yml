@@ -11,10 +11,7 @@
     - 684A14CF2582E0C5
     - FCEF32E745F2C3D5
 
-    jenkins_pkg_version: 2.289.2
-    oracle_java_version: 8
-    oracle_java_version_update: 131
-    oracle_java_version_build: 11
+    jenkins_pkg_version: 2.164
     sshkey_passphrase: "{{ vault_sshkey_passphrase }}"
     jenkins_admin_password: "{{ vault_jenkins_admin_password }}"
     jenkins_git_commiter_name: Learn Internal Deploy
@@ -38,43 +35,26 @@
     jenkins_install_github_tools: no
     enable_install_pip: yes
     jenkins_default_plugins:
-      - async-http-client
       - blueocean
       - blueocean-bitbucket-pipeline
       - blueocean-git-pipeline
       - build-pipeline-plugin
-      - bouncycastle-api
-      - build-token-root
-      - cloudbees-folder
-      - configurationslicing
       - credentials
       - dashboard-view
       - envinject
-      - excludeMatrixParent
-      - favorite
       - github
       - github-branch-source
       - greenballs
       - icon-shim
-      - jenkins-design-language
       - job-import-plugin
       - jobConfigHistory
       - matrix-auth
-      - matrixtieparent
-      - mercurial
       - metrics
       - nodelabelparameter
-      - pipeline-maven
-      - pipeline-multibranch-defaults
-      - publish-over-ssh
       - resource-disposer
       - role-strategy
       - ssh-agent
       - ssh-credentials
-      - ssh-slaves
-      - subversion
-      - travis-yml
-      - urltrigger
       - workflow-aggregator
       - workflow-cps
       - workflow-job
