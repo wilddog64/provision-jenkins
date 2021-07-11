@@ -12,7 +12,7 @@
       - openjdk-8-jdk
     state: present
 
-- name: get jenkins package {{ jenkins_pkg_version }}
+- name: download jenkins package {{ jenkins_pkg_version }}
   get_url:
     url: "{{ jenkins_pkg_url }}/binary/jenkins_{{jenkins_pkg_version}}_all.deb"
     dest: /tmp/jenkins_{{jenkins_pkg_version}}_all.deb
