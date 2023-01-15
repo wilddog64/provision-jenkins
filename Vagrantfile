@@ -11,12 +11,12 @@ Vagrant.configure("2") do |config|
   # https://docs.vagrantup.com.
 
   # automatically configure a private network
-  config.vm.network :private_network, :auto_network => true
+  config.vm.network :private_network, type: 'dhcp', lxc__bridge_name: 'v1cbr1'
   config.vm.network :forwarded_port, guest:8080, host: 8080
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "ubuntu/focal64"
+  config.vm.box = "isc/lxc-ubuntu-20.04"
   config.vm.provision :ansible do | ansible |
     ansible.limit               = 'all'
     ansible.galaxy_roles_path   = '..'
